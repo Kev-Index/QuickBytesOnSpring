@@ -21,7 +21,11 @@ public class OrderController {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
 	private VendorRepository vendorRepository;
 	
 	/* GET ALL ORDERS */
