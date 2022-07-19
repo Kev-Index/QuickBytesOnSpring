@@ -1,5 +1,5 @@
 package com.quickbytes.enums;
 
-public enum Order_Status {
+public enum OrderStatus {
 	IN_PROGRESS, PENDING, APPROVED, DENIED
 }

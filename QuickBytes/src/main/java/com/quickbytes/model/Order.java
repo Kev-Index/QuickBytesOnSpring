@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.quickbytes.enums.Order_Status;
+import com.quickbytes.enums.OrderStatus;
 
 @Entity
 public class Order {
@@ -20,7 +20,7 @@ public class Order {
 	private Float totalPrice;
 	
 	@Column(nullable=false)
-	private Order_Status status;
+	private OrderStatus status;
 	
 	@Column(nullable=false)
 	private String orderTime;
@@ -41,7 +41,7 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long orderId, Float totalPrice, Order_Status status, String orderTime, String endTime, Customer customer,
+	public Order(Long orderId, Float totalPrice, OrderStatus status, String orderTime, String endTime, Customer customer,
 			Vendor vendor) {
 		super();
 		this.orderId = orderId;
@@ -69,11 +69,11 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public Order_Status getStatus() {
+	public OrderStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Order_Status status) {
+	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 

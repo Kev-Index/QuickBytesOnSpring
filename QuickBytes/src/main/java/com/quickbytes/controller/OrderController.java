@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.enums.Order_Status;
+import com.quickbytes.enums.OrderStatus;
 import com.quickbytes.model.Order;
 import com.quickbytes.repository.OrderRepository;
 
@@ -122,7 +122,7 @@ public class OrderController {
 				Order order = getOrder(id);
 				
 				//update order
-				order.setStatus(Order_Status.PENDING);
+				order.setStatus(OrderStatus.PENDING);
 				return orderRepository.save(order);	
 	}
 	
@@ -133,7 +133,7 @@ public class OrderController {
 		Order order = getOrder(id);
 		
 		//update order
-		order.setStatus(Order_Status.APPROVED);
+		order.setStatus(OrderStatus.APPROVED);
 		return orderRepository.save(order);	
 	}
 	
@@ -144,7 +144,7 @@ public class OrderController {
 		Order order = getOrder(id);
 		
 		//update order
-		order.setStatus(Order_Status.DENIED);
+		order.setStatus(OrderStatus.DENIED);
 		return orderRepository.save(order);	
 	}
 	
