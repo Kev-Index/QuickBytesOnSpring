@@ -29,9 +29,11 @@ public class Order {
 	private String endTime;
 	
 	@OneToOne //fk
+	@Column(nullable=false)
 	private Customer customer;
 	
 	@OneToOne //fk
+	@Column(nullable=false)
 	private Vendor vendor;
 
 	public Order() {
