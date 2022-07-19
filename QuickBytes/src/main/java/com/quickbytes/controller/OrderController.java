@@ -74,7 +74,7 @@ public class OrderController {
 		return orderRepository.save(order);	
 	}
 	
-	/* PUT EXISTING ORDER */
+	/* UPDATE EXISTING ORDER */
 	@PutMapping("/order/{id}/{cid}/{vid}")
 	public Order putOrder(@RequestBody Order newOrder, @PathVariable("id") Long id, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
 		//get order
@@ -104,87 +104,69 @@ public class OrderController {
 		return orderRepository.save(order);	
 	}
 	
-	/* PUT EXISTING ORDER'S TOTAL PRICE */
-	@PutMapping("/order/price/{id}/{cid}/{vid}/{price}")
-	public Order putOrderPrice(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
-								@PathVariable("vid") Long vid, @PathVariable("price") Float price) {
+	/* UPDATE EXISTING ORDER'S TOTAL PRICE */
+	@PutMapping("/order/price/{id}/{price}")
+	public Order putOrderPrice(@PathVariable("id") Long id, @PathVariable("price") Float price) {
 		//get order
 		Order order = getOrder(id);
-		
-		//get customer
-		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
-		if (!optionalCustomer.isPresent()) {
-			throw new RuntimeException("Customer ID is invalid");
-		}
-		Customer customer = optionalCustomer.get();
-		
-		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
-		if (!optionalVendor.isPresent()) {
-			throw new RuntimeException("Vendor ID is invalid");
-		}
-		Vendor vendor = optionalVendor.get();
 		
 		//update order
 		order.setTotalPrice(price);
-		order.setCustomer(customer);
-		order.setVendor(vendor);
 		return orderRepository.save(order);	
 	}
 	
-	/* PUT EXISTING ORDER'S STATUS */
-	@PutMapping("/order/status/{id}/{cid}/{vid}/{status}")
-	public Order putOrderStatus(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
-								@PathVariable("vid") Long vid, @PathVariable("status") Order_Status status) {
+	/* PEND ORDER TO VENDOR */
+	@PutMapping("/order/send/{id}")
+	public Order pendOrder(@PathVariable("id") Long id) {
+		//get order
+				Order order = getOrder(id);
+				
+				//update order
+				order.setStatus(Order_Status.PENDING);
+				return orderRepository.save(order);	
+	}
+	
+	/* APPROVE ORDER */
+	@PutMapping("/order/approve/{id}")
+	public Order approveOrder(@PathVariable("id") Long id) {
 		//get order
 		Order order = getOrder(id);
-		
-		//get customer
-		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
-		if (!optionalCustomer.isPresent()) {
-			throw new RuntimeException("Customer ID is invalid");
-		}
-		Customer customer = optionalCustomer.get();
-		
-		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
-		if (!optionalVendor.isPresent()) {
-			throw new RuntimeException("Vendor ID is invalid");
-		}
-		Vendor vendor = optionalVendor.get();
 		
 		//update order
-		order.setStatus(status);
-		order.setCustomer(customer);
-		order.setVendor(vendor);
+		order.setStatus(Order_Status.APPROVED);
 		return orderRepository.save(order);	
 	}
 	
-	/* PUT EXISTING ORDER'S END TIME */
-	@PutMapping("/order/endtime/{id}/{cid}/{vid}/{endtime}")
-	public Order putOrderEndTime(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
-								@PathVariable("vid") Long vid, @PathVariable("endtime") String endtime) {
+	/* DENY ORDER */
+	@PutMapping("/order/deny/{id}")
+	public Order denyOrder(@PathVariable("id") Long id) {
 		//get order
 		Order order = getOrder(id);
 		
-		//get customer
-		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
-		if (!optionalCustomer.isPresent()) {
-			throw new RuntimeException("Customer ID is invalid");
-		}
-		Customer customer = optionalCustomer.get();
+		//update order
+		order.setStatus(Order_Status.DENIED);
+		return orderRepository.save(order);	
+	}
+	
+	/* UPDATE EXISTING ORDER'S ORDER TIME */
+	@PutMapping("/order/ordertime/{id}/{ordertime}")
+	public Order putOrderOrderTime(@PathVariable("id") Long id, @PathVariable("ordertime") String ordertime) {
+		//get order
+		Order order = getOrder(id);
 		
-		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
-		if (!optionalVendor.isPresent()) {
-			throw new RuntimeException("Vendor ID is invalid");
-		}
-		Vendor vendor = optionalVendor.get();
+		//update order
+		order.setEndTime(ordertime);
+		return orderRepository.save(order);	
+	}
+	
+	/* UPDATE EXISTING ORDER'S END TIME */
+	@PutMapping("/order/endtime/{id}/{endtime}")
+	public Order putOrderEndTime(@PathVariable("id") Long id, @PathVariable("endtime") String endtime) {
+		//get order
+		Order order = getOrder(id);
 		
 		//update order
 		order.setEndTime(endtime);
-		order.setCustomer(customer);
-		order.setVendor(vendor);
 		return orderRepository.save(order);	
 	}
 	
