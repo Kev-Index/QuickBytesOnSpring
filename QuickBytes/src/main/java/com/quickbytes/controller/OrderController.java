@@ -180,6 +180,18 @@ public class OrderController {
 		orderRepository.deleteById(id);
 	}
 	
+	/* DELETE ORDERS BY CUSTOMER ID */
+	@DeleteMapping("/order/cid/{cid}")
+	public Order deleteOrdersByCustomerId(@PathVariable("cid") Long cid) {
+		return orderRepository.deleteOrdersByCustomerId(cid);
+	}
+	
+	/* DELETE ORDERS BY VENDOR ID */
+	@DeleteMapping("/order/vid/{vid}")
+	public Order deleteOrdersByVendorId(@PathVariable("vid") Long vid) {
+		return orderRepository.deleteOrdersByVendorId(vid);
+	}
+	
 	/* DELETE ALL ORDERS */
 	@DeleteMapping("/orders")
 	public void deleteOrders() {
