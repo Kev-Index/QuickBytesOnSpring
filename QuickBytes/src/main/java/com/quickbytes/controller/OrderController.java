@@ -44,13 +44,13 @@ public class OrderController {
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET ORDERS BY CUSTOMER ID */
+	/* GET ALL ORDERS BY CUSTOMER ID */
 	@GetMapping("/order/cid/{cid}")
 	public Order getOrdersByCustomerId(@PathVariable("cid") Long cid) {
 		return orderRepository.getOrdersByCustomerId(cid);
 	}
 	
-	/* GET ORDERS BY VENDOR ID */
+	/* GET ALL ORDERS BY VENDOR ID */
 	@GetMapping("/order/vid/{vid}")
 	public Order getOrdersByVendorId(@PathVariable("vid") Long vid) {
 		return orderRepository.getOrdersByVendorId(vid);
@@ -119,7 +119,7 @@ public class OrderController {
 		return orderRepository.save(order);	
 	}
 	
-	/* PEND ORDER TO VENDOR */
+	/* PEND ORDER */
 	@PutMapping("/order/send/{id}")
 	public Order pendOrder(@PathVariable("id") Long id) {
 		//get order
@@ -180,13 +180,13 @@ public class OrderController {
 		orderRepository.deleteById(id);
 	}
 	
-	/* DELETE ORDERS BY CUSTOMER ID */
+	/* DELETE ALL ORDERS BY CUSTOMER ID */
 	@DeleteMapping("/order/cid/{cid}")
 	public Order deleteOrdersByCustomerId(@PathVariable("cid") Long cid) {
 		return orderRepository.deleteOrdersByCustomerId(cid);
 	}
 	
-	/* DELETE ORDERS BY VENDOR ID */
+	/* DELETE ALL ORDERS BY VENDOR ID */
 	@DeleteMapping("/order/vid/{vid}")
 	public Order deleteOrdersByVendorId(@PathVariable("vid") Long vid) {
 		return orderRepository.deleteOrdersByVendorId(vid);
