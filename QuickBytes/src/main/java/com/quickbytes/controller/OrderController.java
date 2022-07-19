@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quickbytes.enums.Order_Status;
 import com.quickbytes.model.Order;
 import com.quickbytes.repository.OrderRepository;
-import com.springboot.backend.model.Customer;
 
 @RestController
 public class OrderController {
@@ -54,7 +54,7 @@ public class OrderController {
 	
 	/* POST NEW ORDER */
 	@PostMapping("/order/{cid}/{vid}")
-	public Order postCustomer(@RequestBody Order order, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
+	public Order postOrder(@RequestBody Order order, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
 		//get customer
 		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
 		if (!optionalCustomer.isPresent()) {
@@ -76,13 +76,9 @@ public class OrderController {
 	
 	/* PUT EXISTING ORDER */
 	@PutMapping("/order/{id}/{cid}/{vid}")
-	public Order putCustomer(@RequestBody Order newOrder, @PathVariable("id") Long id, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
+	public Order putOrder(@RequestBody Order newOrder, @PathVariable("id") Long id, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
 		//get order
-		Optional<Order> optionalOrder = orderRepository.findById(id);
-		if (!optionalOrder.isPresent()) {
-			throw new RuntimeException("ID is invalid");
-		}
-		Order order = optionalOrder.get();
+		Order order = getOrder(id);
 		
 		//get customer
 		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
@@ -103,6 +99,90 @@ public class OrderController {
 		order.setStatus(newOrder.getStatus());
 		order.setOrderTime(newOrder.getOrderTime());
 		order.setEndTime(newOrder.getEndTime());
+		order.setCustomer(customer);
+		order.setVendor(vendor);
+		return orderRepository.save(order);	
+	}
+	
+	/* PUT EXISTING ORDER'S TOTAL PRICE */
+	@PutMapping("/order/price/{id}/{cid}/{vid}/{price}")
+	public Order putOrderPrice(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
+								@PathVariable("vid") Long vid, @PathVariable("price") Float price) {
+		//get order
+		Order order = getOrder(id);
+		
+		//get customer
+		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
+		if (!optionalCustomer.isPresent()) {
+			throw new RuntimeException("Customer ID is invalid");
+		}
+		Customer customer = optionalCustomer.get();
+		
+		//get vendor
+		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		if (!optionalVendor.isPresent()) {
+			throw new RuntimeException("Vendor ID is invalid");
+		}
+		Vendor vendor = optionalVendor.get();
+		
+		//update order
+		order.setTotalPrice(price);
+		order.setCustomer(customer);
+		order.setVendor(vendor);
+		return orderRepository.save(order);	
+	}
+	
+	/* PUT EXISTING ORDER'S STATUS */
+	@PutMapping("/order/status/{id}/{cid}/{vid}/{status}")
+	public Order putOrderStatus(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
+								@PathVariable("vid") Long vid, @PathVariable("status") Order_Status status) {
+		//get order
+		Order order = getOrder(id);
+		
+		//get customer
+		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
+		if (!optionalCustomer.isPresent()) {
+			throw new RuntimeException("Customer ID is invalid");
+		}
+		Customer customer = optionalCustomer.get();
+		
+		//get vendor
+		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		if (!optionalVendor.isPresent()) {
+			throw new RuntimeException("Vendor ID is invalid");
+		}
+		Vendor vendor = optionalVendor.get();
+		
+		//update order
+		order.setStatus(status);
+		order.setCustomer(customer);
+		order.setVendor(vendor);
+		return orderRepository.save(order);	
+	}
+	
+	/* PUT EXISTING ORDER'S END TIME */
+	@PutMapping("/order/endtime/{id}/{cid}/{vid}/{endtime}")
+	public Order putOrderEndTime(@PathVariable("id") Long id, @PathVariable("cid") Long cid,
+								@PathVariable("vid") Long vid, @PathVariable("endtime") String endtime) {
+		//get order
+		Order order = getOrder(id);
+		
+		//get customer
+		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
+		if (!optionalCustomer.isPresent()) {
+			throw new RuntimeException("Customer ID is invalid");
+		}
+		Customer customer = optionalCustomer.get();
+		
+		//get vendor
+		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		if (!optionalVendor.isPresent()) {
+			throw new RuntimeException("Vendor ID is invalid");
+		}
+		Vendor vendor = optionalVendor.get();
+		
+		//update order
+		order.setEndTime(endtime);
 		order.setCustomer(customer);
 		order.setVendor(vendor);
 		return orderRepository.save(order);	
