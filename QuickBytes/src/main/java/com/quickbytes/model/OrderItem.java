@@ -29,9 +29,10 @@ public class OrderItem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderItem(Long orderItemId, Item item) {
+	public OrderItem(Long orderItemId, Order order, Item item) {
 		super();
 		this.orderItemId = orderItemId;
+		this.order = order;
 		this.item = item;
 	}
 
@@ -41,6 +42,14 @@ public class OrderItem {
 
 	public void setOrderItemId(Long orderItemId) {
 		this.orderItemId = orderItemId;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Item getItem() {
@@ -53,6 +62,6 @@ public class OrderItem {
 
 	@Override
 	public String toString() {
-		return "OrderItem [orderItemId=" + orderItemId + ", item=" + item + "]";
+		return "OrderItem [orderItemId=" + orderItemId + ", order=" + order + ", item=" + item + "]";
 	}
 }
