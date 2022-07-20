@@ -15,12 +15,12 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 	OrderItem getAllOrderItemsByItemId(Long iid);
 
 	@Query("delete oi from OrderItem oi where oi.order.orderId=?1")
-	Order deleteAllOrderItemsByOrderId(Long oid);
+	long deleteAllOrderItemsByOrderId(Long oid);
 
 	@Query("delete oi from OrderItem oi where oi.item.itemId=?1 limit ?2")
-	Order deleteOrderItemsByItemId(Long iid, Integer amount);
+	long deleteOrderItemsByItemId(Long iid, Integer amount);
 
 	@Query("delete oi from OrderItem oi where oi.item.itemId=?1")
-	Order deleteAllOrderItemsByItemId(Long iid);
+	long deleteAllOrderItemsByItemId(Long iid);
 
 }

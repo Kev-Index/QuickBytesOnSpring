@@ -115,20 +115,20 @@ public class OrderItemController {
 	
 	/* DELETE ALL ORDER ITEMS BY ORDER ID */
 	@DeleteMapping("/orderitem/oid/{oid}")
-	public Order deleteAllOrderItemsByOrderId(@PathVariable("oid") Long oid) {
-		return orderItemRepository.deleteAllOrderItemsByOrderId(oid);
+	public void deleteAllOrderItemsByOrderId(@PathVariable("oid") Long oid) {
+		orderItemRepository.deleteAllOrderItemsByOrderId(oid);
 	}
 	
 	/* DELETE SOME ORDER ITEMS BY ITEM ID */
 	@DeleteMapping("/orderitem/iid/{iid}/{amount}")
-	public Order deleteOrderItemsByItemId(@PathVariable("iid") Long iid, @PathVariable("amount") Integer amount) {
-		return orderItemRepository.deleteOrderItemsByItemId(iid,amount);
+	public void deleteOrderItemsByItemId(@PathVariable("iid") Long iid, @PathVariable("amount") Integer amount) {
+		orderItemRepository.deleteOrderItemsByItemId(iid,amount);
 	}
 	
 	/* DELETE ALL ORDER ITEMS BY ITEM ID */
 	@DeleteMapping("/orderitem/iid/{iid}")
-	public Order deleteAllOrderItemsByItemId(@PathVariable("iid") Long iid) {
-		return orderItemRepository.deleteAllOrderItemsByItemId(iid);
+	public void deleteAllOrderItemsByItemId(@PathVariable("iid") Long iid) {
+		orderItemRepository.deleteAllOrderItemsByItemId(iid);
 	}
 	
 	/* DELETE ALL ORDER ITEMS */
