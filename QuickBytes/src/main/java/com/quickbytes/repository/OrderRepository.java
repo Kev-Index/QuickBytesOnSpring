@@ -7,16 +7,16 @@ import com.quickbytes.model.Order;
 
 public interface OrderRepository extends JpaRepository<Order,Long>{
 
-	@Query("select o from Order o where order.customer.customerId=?1")
+	@Query("select o from Order o where o.customer.customerId=?1")
 	Order getOrdersByCustomerId(Long cid);
 
-	@Query("select o from Order o where order.vendor.vendorId=?1")
+	@Query("select o from Order o where o.vendor.vendorId=?1")
 	Order getOrdersByVendorId(Long vid);
 
-	@Query("delete o from Order o where order.vendor.vendorId=?1")
+	@Query("delete o from Order o where o.vendor.vendorId=?1")
 	Order deleteOrdersByCustomerId(Long cid);
 
-	@Query("delete o from Order o where order.vendor.vendorId=?1")
+	@Query("delete o from Order o where o.vendor.vendorId=?1")
 	Order deleteOrdersByVendorId(Long vid);
 	
 }
