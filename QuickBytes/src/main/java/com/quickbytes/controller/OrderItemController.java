@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -107,12 +108,32 @@ public class OrderItemController {
 	}
 	
 	/* DELETE ORDER ITEM BY ID */
+	@DeleteMapping("/orderitem/{id}")
+	public void deleteOrderItem(@PathVariable("id") Long id) {
+		orderItemRepository.deleteById(id);
+	}
 	
 	/* DELETE ALL ORDER ITEMS BY ORDER ID */
+	@DeleteMapping("/orderitem/oid/{oid}")
+	public Order deleteOrderItemsByOrderId(@PathVariable("oid") Long oid) {
+		return orderItemRepository.deleteOrderItemsByOrderId(oid);
+	}
 	
-	/* DELETE ORDER ITEMS BY ITEM ID */
+	/* DELETE SOME ORDER ITEMS BY ITEM ID */
+	@DeleteMapping("/orderitem/iid/{iid}/{amount}")
+	public Order deleteOrderItemsByItemId(@PathVariable("iid") Long iid, @PathVariable("amount") Integer amount) {
+		return orderItemRepository.deleteOrderItemsByItemId(iid,amount);
+	}
 	
 	/* DELETE ALL ORDER ITEMS BY ITEM ID */
+	@DeleteMapping("/orderitem/iid/{iid}")
+	public Order deleteAllOrderItemsByItemId(@PathVariable("iid") Long iid) {
+		return orderItemRepository.deleteOrderItemsByItemId(iid);
+	}
 	
 	/* DELETE ALL ORDER ITEMS */
+	@DeleteMapping("/orderitems")
+	public void deleteOrderItems() {
+		orderItemRepository.deleteAll();
+	}
 }
