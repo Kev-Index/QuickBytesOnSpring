@@ -20,34 +20,34 @@ import com.quickbytes.repository.VendorRepository;
 @RestController
 public class ItemController {
 	@Autowired
-	ItemRepository ir;
+	ItemRepository itemRepository;
 	
 	@Autowired
-	VendorRepository vr;
+	VendorRepository vendorRepository;
 	
 	@PostMapping("/item/{vid}")
 	public void postItem(@RequestBody Item i,@PathVariable("vid") Long vid) {
 		//use JpaRepository Interface
 		//has lot of precreated methods for db interaction
-		Optional<Vendor> ov = vr.findById(vid);
-		if(!ov.isPresent()) {
-			throw new RuntimeException("invalid category id");
+		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
+		if(!optionalVendor.isPresent()) {
+			throw new RuntimeException("invalid vendor id");
 		}
-		i.setVendor(ov.get());
-		ir.save(i);
+		i.setVendor(optionalVendor.get());
+		itemRepository.save(i);
 	}
 	
-	@GetMapping("/item")
+	@GetMapping("/items")
 	public List<Item> getAllItems() {
-		List<Item> l= ir.findAll();
-		return l;
+		List<Item> list= itemRepository.findAll();
+		return list;
 	}
 	
-	@GetMapping("/item/single/{id}")
+	@GetMapping("/item/{id}")
 	public Item getSingleItemById(@PathVariable("id") Long id) {
-		Optional<Item>o =ir.findById(id);
-		if(o.isPresent()) {
-			return o.get();
+		Optional<Item>optional =itemRepository.findById(id);
+		if(optional.isPresent()) {
+			return optional.get();
 		}
 		else {
 			throw new RuntimeException("ID is invalid");
@@ -55,21 +55,21 @@ public class ItemController {
 	}
 	
 	@PutMapping("/item/{id}")
-	public Item updateitem(@PathVariable("id") Long id,@RequestBody Item newItem ) {
-		Optional<Item> o = ir.findById(id);
-		if(o.isPresent()) {
-			Item ei = o.get();
+	public Item updateItem(@PathVariable("id") Long id,@RequestBody Item newItem ) {
+		Optional<Item> optional = itemRepository.findById(id);
+		if(optional.isPresent()) {
+			Item ei = optional.get();
 			ei.setName(newItem.getName());
 			ei.setPrice(newItem.getPrice());
 			ei.setQuantity(newItem.getQuantity());
-			return ir.save(ei);
+			return itemRepository.save(ei);
 		}
 		else {
 			throw new RuntimeException("ID is invalid");
 		}
 	}
 	@GetMapping("/item/vendor/{vid}")
-	public List<Item> getProductsByAccountId(@PathVariable("vid") Long vid) {
-		return ir.findByAccountId(vid);
+	public List<Item> getProductsByVendorId(@PathVariable("vid") Long vid) {
+		return itemRepository.findByVendorId(vid);
 	}
 }

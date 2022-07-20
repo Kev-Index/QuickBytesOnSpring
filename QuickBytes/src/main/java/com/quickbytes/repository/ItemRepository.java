@@ -12,6 +12,6 @@ import com.quickbytes.model.Item;
 public interface ItemRepository extends JpaRepository<Item,Long> {
 	
 	@Query("select i from Item i where i.vendor.vendorId = ?1")
-	List<Item> findByAccountId(Long vid);
+	List<Item> findByVendorId(Long vid);
 	
 }

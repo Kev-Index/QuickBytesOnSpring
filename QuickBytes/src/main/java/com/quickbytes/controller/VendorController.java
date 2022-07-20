@@ -11,12 +11,12 @@ import com.quickbytes.repository.VendorRepository;
 @RestController
 public class VendorController {
 	@Autowired
-	VendorRepository vr;
+	VendorRepository vendorRepository;
 	
 	@PostMapping("/vendor")
 	public void postVendor(@RequestBody Vendor v) {
 		//use JpaRepository Interface
 		//has lot of precreated methods for db interaction
-		vr.save(v);
+		vendorRepository.save(v);
 	}
 }
