@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.quickbytes.enums.OrderStatus;
 
@@ -28,11 +28,11 @@ public class Order {
 	@Column(nullable=false)
 	private String endTime;
 	
-	@OneToOne //fk
+	@ManyToOne //fk
 	@Column(nullable=false)
 	private Customer customer;
 	
-	@OneToOne //fk
+	@ManyToOne //fk
 	@Column(nullable=false)
 	private Vendor vendor;
 

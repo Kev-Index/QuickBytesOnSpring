@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
@@ -16,11 +16,11 @@ public class OrderItem {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long orderItemId;
 	
-	@OneToOne //fk
+	@ManyToOne //fk
 	@Column(nullable=false)
 	private Order order;
 	
-	@OneToOne //fk
+	@ManyToOne //fk
 	@Column(nullable=false)
 	private Item item;
 
