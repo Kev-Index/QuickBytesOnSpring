@@ -13,7 +13,7 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
 	@Query("select o from Order o where o.vendor.vendorId=?1")
 	Order getOrdersByVendorId(Long vid);
 
-	@Query("delete o from Order o where o.vendor.vendorId=?1")
+	@Query("delete o from Order o where o.customer.customerId=?1")
 	Order deleteOrdersByCustomerId(Long cid);
 
 	@Query("delete o from Order o where o.vendor.vendorId=?1")
