@@ -43,13 +43,13 @@ public class OrderItemController {
 	/* GET ORDER ITEMS BY ORDER ID */
 	@GetMapping("/order/oid/{oid}")
 	public OrderItem getOrderItemsByOrderId(@PathVariable("oid") Long oid) {
-		return orderItemRepository.getOrderItemsByOrderId(oid);
+		return orderItemRepository.getAllOrderItemsByOrderId(oid);
 	}
 	
 	/* GET ORDER ITEMS BY ITEM ID */
 	@GetMapping("/order/iid/{iid}")
 	public OrderItem getOrderItemsByItemId(@PathVariable("iid") Long iid) {
-		return orderItemRepository.getOrderItemsByItemId(iid);
+		return orderItemRepository.getAllOrderItemsByItemId(iid);
 	}
 	
 	/* GET ALL ORDER ITEMS */
@@ -115,8 +115,8 @@ public class OrderItemController {
 	
 	/* DELETE ALL ORDER ITEMS BY ORDER ID */
 	@DeleteMapping("/orderitem/oid/{oid}")
-	public Order deleteOrderItemsByOrderId(@PathVariable("oid") Long oid) {
-		return orderItemRepository.deleteOrderItemsByOrderId(oid);
+	public Order deleteAllOrderItemsByOrderId(@PathVariable("oid") Long oid) {
+		return orderItemRepository.deleteAllOrderItemsByOrderId(oid);
 	}
 	
 	/* DELETE SOME ORDER ITEMS BY ITEM ID */
@@ -128,12 +128,12 @@ public class OrderItemController {
 	/* DELETE ALL ORDER ITEMS BY ITEM ID */
 	@DeleteMapping("/orderitem/iid/{iid}")
 	public Order deleteAllOrderItemsByItemId(@PathVariable("iid") Long iid) {
-		return orderItemRepository.deleteOrderItemsByItemId(iid);
+		return orderItemRepository.deleteAllOrderItemsByItemId(iid);
 	}
 	
 	/* DELETE ALL ORDER ITEMS */
 	@DeleteMapping("/orderitems")
-	public void deleteOrderItems() {
+	public void deleteAllOrderItems() {
 		orderItemRepository.deleteAll();
 	}
 }

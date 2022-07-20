@@ -46,14 +46,14 @@ public class OrderController {
 	
 	/* GET ALL ORDERS BY CUSTOMER ID */
 	@GetMapping("/order/cid/{cid}")
-	public Order getOrdersByCustomerId(@PathVariable("cid") Long cid) {
-		return orderRepository.getOrdersByCustomerId(cid);
+	public Order getAllOrdersByCustomerId(@PathVariable("cid") Long cid) {
+		return orderRepository.getAllOrdersByCustomerId(cid);
 	}
 	
 	/* GET ALL ORDERS BY VENDOR ID */
 	@GetMapping("/order/vid/{vid}")
-	public Order getOrdersByVendorId(@PathVariable("vid") Long vid) {
-		return orderRepository.getOrdersByVendorId(vid);
+	public Order getAllOrdersByVendorId(@PathVariable("vid") Long vid) {
+		return orderRepository.getAllOrdersByVendorId(vid);
 	}
 	
 	/* POST NEW ORDER */
@@ -182,19 +182,19 @@ public class OrderController {
 	
 	/* DELETE ALL ORDERS BY CUSTOMER ID */
 	@DeleteMapping("/order/cid/{cid}")
-	public Order deleteOrdersByCustomerId(@PathVariable("cid") Long cid) {
-		return orderRepository.deleteOrdersByCustomerId(cid);
+	public Order deleteAllOrdersByCustomerId(@PathVariable("cid") Long cid) {
+		return orderRepository.deleteAllOrdersByCustomerId(cid);
 	}
 	
 	/* DELETE ALL ORDERS BY VENDOR ID */
 	@DeleteMapping("/order/vid/{vid}")
-	public Order deleteOrdersByVendorId(@PathVariable("vid") Long vid) {
-		return orderRepository.deleteOrdersByVendorId(vid);
+	public Order deleteAllOrdersByVendorId(@PathVariable("vid") Long vid) {
+		return orderRepository.deleteAllOrdersByVendorId(vid);
 	}
 	
 	/* DELETE ALL ORDERS */
 	@DeleteMapping("/orders")
-	public void deleteOrders() {
+	public void deleteAllOrders() {
 		orderRepository.deleteAll();
 	}
 	
