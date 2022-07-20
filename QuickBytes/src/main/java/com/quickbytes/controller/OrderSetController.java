@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Order;
-import com.quickbytes.model.OrderItem;
 import com.quickbytes.model.OrderSet;
 import com.quickbytes.repository.OrderRepository;
 import com.quickbytes.repository.OrderSetRepository;
