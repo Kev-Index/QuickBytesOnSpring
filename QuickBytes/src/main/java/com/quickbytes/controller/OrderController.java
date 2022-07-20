@@ -182,14 +182,14 @@ public class OrderController {
 	
 	/* DELETE ALL ORDERS BY CUSTOMER ID */
 	@DeleteMapping("/order/cid/{cid}")
-	public Order deleteAllOrdersByCustomerId(@PathVariable("cid") Long cid) {
-		return orderRepository.deleteAllOrdersByCustomerId(cid);
+	public void deleteAllOrdersByCustomerId(@PathVariable("cid") Long cid) {
+		orderRepository.deleteAllOrdersByCustomerId(cid);
 	}
 	
 	/* DELETE ALL ORDERS BY VENDOR ID */
 	@DeleteMapping("/order/vid/{vid}")
-	public Order deleteAllOrdersByVendorId(@PathVariable("vid") Long vid) {
-		return orderRepository.deleteAllOrdersByVendorId(vid);
+	public void deleteAllOrdersByVendorId(@PathVariable("vid") Long vid) {
+		orderRepository.deleteAllOrdersByVendorId(vid);
 	}
 	
 	/* DELETE ALL ORDERS */

@@ -14,9 +14,9 @@ public interface OrderRepository extends JpaRepository<Order,Long>{
 	Order getAllOrdersByVendorId(Long vid);
 
 	@Query("delete o from Order o where o.customer.customerId=?1")
-	Order deleteAllOrdersByCustomerId(Long cid);
+	long deleteAllOrdersByCustomerId(Long cid);
 
 	@Query("delete o from Order o where o.vendor.vendorId=?1")
-	Order deleteAllOrdersByVendorId(Long vid);
+	long deleteAllOrdersByVendorId(Long vid);
 	
 }
