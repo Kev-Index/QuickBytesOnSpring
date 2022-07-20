@@ -6,6 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import com.quickbytes.model.OrderSet;
 
 public interface OrderSetRepository extends JpaRepository<OrderSet,Long>{
+	
+	@Query("select os from OrderSet os where os.order.orderId=?1")
+	OrderSet getAllOrderSetsByOrderId(Long oid);
+
+	@Query("select os from OrderSet os where os.set.setId=?1")
+	OrderSet getAllOrderSetsBySetId(Long oid);
 
 	@Query("delete os from OrderSet os where os.order.orderId=?1")
 	long deleteAllOrderSetsByOrderId(Long oid);
