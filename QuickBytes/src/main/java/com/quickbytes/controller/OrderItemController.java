@@ -101,7 +101,7 @@ public class OrderItemController {
 		}
 		Item item = optionalItem.get();
 		
-		//update order
+		//update order item
 		orderItem.setOrder(order);
 		orderItem.setItem(item);
 		return orderItemRepository.save(orderItem);	
