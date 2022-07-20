@@ -84,7 +84,7 @@ public class OrderItemController {
 	@PutMapping("/orderitem/{id}/{oid}/{iid}")
 	public OrderItem putOrderItem(@PathVariable("id") Long id, 
 							@PathVariable("oid") Long oid, @PathVariable("iid") Long iid) {
-		//get order
+		//get order item
 		OrderItem orderItem = getOrderItem(id);
 		
 		//get order
