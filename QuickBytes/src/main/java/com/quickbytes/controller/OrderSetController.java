@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -109,13 +110,32 @@ public class OrderSetController {
 	}
 	
 	/* DELETE ORDER SET BY ID */
-	
+	@DeleteMapping("/orderset/{id}")
+	public void deleteOrderSet(@PathVariable("id") Long id) {
+		orderSetRepository.deleteById(id);
+	}
 	
 	/* DELETE ALL ORDER SETS BY ORDER ID */
+	@DeleteMapping("/orderset/oid/{oid}")
+	public void deleteAllOrderSetsByOrderId(@PathVariable("oid") Long oid) {
+		orderSetRepository.deleteAllOrderSetsByOrderId(oid);
+	}
 	
+	/* DELETE SOME ORDER SETS BY SET ID */
+	@DeleteMapping("/orderset/sid/{sid}/{amount}")
+	public void deleteOrderSetsBySetId(@PathVariable("sid") Long sid, @PathVariable("amount") Integer amount) {
+		orderSetRepository.deleteOrderSetsBySetId(sid,amount);
+	}
 	
 	/* DELETE ALL ORDER SETS BY SET ID */
-	
+	@DeleteMapping("/orderset/sid/{sid}")
+	public void deleteAllOrderSetsBySetId(@PathVariable("sid") Long sid) {
+		orderSetRepository.deleteAllOrderSetsBySetId(sid);
+	}
 	
 	/* DELETE ALL ORDER SETS */
+	@DeleteMapping("/ordersets")
+	public void deleteAllOrderSets() {
+		orderSetRepository.deleteAll();
+	}
 }
