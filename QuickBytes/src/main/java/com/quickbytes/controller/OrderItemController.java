@@ -41,13 +41,13 @@ public class OrderItemController {
 	}
 	
 	/* GET ORDER ITEMS BY ORDER ID */
-	@GetMapping("/order/oid/{oid}")
+	@GetMapping("/orderitem/oid/{oid}")
 	public OrderItem getAllOrderItemsByOrderId(@PathVariable("oid") Long oid) {
 		return orderItemRepository.getAllOrderItemsByOrderId(oid);
 	}
 	
 	/* GET ORDER ITEMS BY ITEM ID */
-	@GetMapping("/order/iid/{iid}")
+	@GetMapping("/orderitem/iid/{iid}")
 	public OrderItem getAllOrderItemsByItemId(@PathVariable("iid") Long iid) {
 		return orderItemRepository.getAllOrderItemsByItemId(iid);
 	}
