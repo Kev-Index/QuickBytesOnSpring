@@ -7,20 +7,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.quickbytes.enums.OrderStatus;
+import com.quickbytes.enums.RequestStatus;
 
 @Entity
-public class Order {
+public class Request {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long orderId;
+	private Long requestId;
 	
 	@Column(nullable=false)
 	private Float totalPrice;
 	
 	@Column(nullable=false)
-	private OrderStatus status;
+	private RequestStatus status;
 	
 	@Column(nullable=false)
 	private String orderTime;
@@ -29,22 +29,20 @@ public class Order {
 	private String endTime;
 	
 	@ManyToOne //fk
-	@Column(nullable=false)
 	private Customer customer;
 	
 	@ManyToOne //fk
-	@Column(nullable=false)
 	private Vendor vendor;
 
-	public Order() {
+	public Request() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long orderId, Float totalPrice, OrderStatus status, String orderTime, String endTime, Customer customer,
+	public Request(Long requestId, Float totalPrice, RequestStatus status, String orderTime, String endTime, Customer customer,
 			Vendor vendor) {
 		super();
-		this.orderId = orderId;
+		this.requestId = requestId;
 		this.totalPrice = totalPrice;
 		this.status = status;
 		this.orderTime = orderTime;
@@ -53,12 +51,12 @@ public class Order {
 		this.vendor = vendor;
 	}
 
-	public Long getOrderId() {
-		return orderId;
+	public Long getRequestId() {
+		return requestId;
 	}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
 	}
 
 	public Float getTotalPrice() {
@@ -69,11 +67,11 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public OrderStatus getStatus() {
+	public RequestStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(OrderStatus status) {
+	public void setStatus(RequestStatus status) {
 		this.status = status;
 	}
 
@@ -111,7 +109,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", totalPrice=" + totalPrice + ", status=" + status + ", orderTime="
+		return "Request [requestId=" + requestId + ", totalPrice=" + totalPrice + ", status=" + status + ", orderTime="
 				+ orderTime + ", endTime=" + endTime + "]";
 	}
 }

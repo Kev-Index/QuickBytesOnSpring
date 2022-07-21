@@ -8,46 +8,44 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class OrderCombo {
+public class RequestCombo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long orderComboId;
+	private Long requestComboId;
 	
 	@ManyToOne //fk
-	@Column(nullable=false)
-	private Order order;
+	private Request request;
 	
 	@ManyToOne //fk
-	@Column(nullable=false)
 	private Combo combo;
 
-	public OrderCombo() {
+	public RequestCombo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderCombo(Long orderComboId, Order order, Combo combo) {
+	public RequestCombo(Long requestComboId, Request request, Combo combo) {
 		super();
-		this.orderComboId = orderComboId;
-		this.order = order;
+		this.requestComboId = requestComboId;
+		this.request = request;
 		this.combo = combo;
 	}
 
-	public Long getOrderComboId() {
-		return orderComboId;
+	public Long getRequestComboId() {
+		return requestComboId;
 	}
 
-	public void setOrderComboId(Long orderComboId) {
-		this.orderComboId = orderComboId;
+	public void setRequestComboId(Long requestComboId) {
+		this.requestComboId = requestComboId;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Request getRequest() {
+		return request;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setRequest(Request request) {
+		this.request = request;
 	}
 
 	public Combo getCombo() {
@@ -60,7 +58,7 @@ public class OrderCombo {
 
 	@Override
 	public String toString() {
-		return "OrderCombo [orderComboId=" + orderComboId + ", order=" + order + "]";
+		return "RequestCombo [requestComboId=" + requestComboId + ", request=" + request + "]";
 	}
 	
 }
