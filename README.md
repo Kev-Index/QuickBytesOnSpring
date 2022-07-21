@@ -4,8 +4,7 @@
 - Jerry: postCustomer(), getAllCustomer(), getCustomerByID(), deleteCustomerByID(), updateCustomerByID(), getCustomerByEmployeeID(), getCustomerByUsername(), getListCustomerWithFirstName(), getListCustomerWithLastName(), getListCustomerWithBalanceGreaterThanOrEqual(), getListCustomerWithBalanceLessThanOrEqual()
 
 
-- Kevin
-
+###### Kevin
 Request/RequestController/RequestRepository
 - [x] postRequest()
 - [x] getAllRequests()
