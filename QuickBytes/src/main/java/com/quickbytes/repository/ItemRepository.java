@@ -7,11 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.quickbytes.model.Item;
 
-
-
 public interface ItemRepository extends JpaRepository<Item,Long> {
 	
 	@Query("select i from Item i where i.vendor.vendorId = ?1")
 	List<Item> findByVendorId(Long vid);
-	
 }

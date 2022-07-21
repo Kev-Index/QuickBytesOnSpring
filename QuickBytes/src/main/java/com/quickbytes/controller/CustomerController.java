@@ -1,4 +1,4 @@
-package com.quickbytes.backend.controller;
+package com.quickbytes.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.backend.model.Customer;
-import com.quickbytes.backend.repository.CustomerRepository;
+import com.quickbytes.model.Customer;
+import com.quickbytes.repository.CustomerRepository;
 
 @RestController
 public class CustomerController {
@@ -32,7 +32,7 @@ public class CustomerController {
 	}
 	// Get Specific Customer by CustomerID in Customer Obj \\
 	@GetMapping("/customer/{cid}")
-	public Customer getCustomerByID(@PathVariable("cid")Long id) {
+	public Customer getCustomerById(@PathVariable("cid")Long id) {
 		Optional<Customer> optional = customerRepository.findById(id);
 		if(!optional.isPresent())
 			throw new RuntimeException ("Customer ID Doesn't Exist");
@@ -40,12 +40,12 @@ public class CustomerController {
 	}
 	// Delete Specific Customer by CustomerID \\
 	@DeleteMapping("/customer/{cid}")
-	public void deleteCustomerByID(@PathVariable("cid")Long id) {
+	public void deleteCustomerById(@PathVariable("cid")Long id) {
 		customerRepository.deleteById(id);
 	}
 	// Update (Put) Customer By CustomerID\\
 	@PutMapping("/customer/{cid}")
-	public void updateCustomerByID(@PathVariable("cid")Long id,
+	public void updateCustomerById(@PathVariable("cid")Long id,
 			@RequestBody Customer updatedCustomer) {
 		Optional<Customer> optional = customerRepository.findById(id);
 		if(!optional.isPresent())
@@ -64,8 +64,8 @@ public class CustomerController {
 	
 	// Get Specific Customer by Employee ID \\
 	@GetMapping("/customer/employee/{eid}")
-	public Customer getCustomerByEmployeeID(@PathVariable("eid") int eid){
-		Customer user = customerRepository.getCustomerByUsername(eid);
+	public Customer getCustomerByEmployeeId(@PathVariable("eid") int eid){
+		Customer user = customerRepository.getCustomerByEmployeeId(eid);
 		return user;
 	}
 	// Get Specific Customer by user name \\
@@ -88,13 +88,13 @@ public class CustomerController {
 	}
 	// Get List <Customer> by Balance greater than or equal to \\
 	@GetMapping("/customer/balancegte/{balance}")
-	List<Customer> getListCustomerWithBalanceGreaterThanOrEqual(@PathVariable("balance") float balance){
+	List<Customer> getListCustomerWithBalanceGreaterThanOrEqual(@PathVariable("balance") Float balance){
 		List<Customer> list = customerRepository.getListCustomerWithBalanceGreaterThanOrEqual(balance);
 		return list;
 	}
 	// Get List <Customer> by Balance less than or equal to \\
 	@GetMapping("/customer/balancelte/{balance}")
-	List<Customer> getListCustomerWithBalanceLessThanOrEqual(@PathVariable("balance") float balance){
+	List<Customer> getListCustomerWithBalanceLessThanOrEqual(@PathVariable("balance") Float balance){
 		List<Customer> list = customerRepository.getListCustomerWithBalanceLessThanOrEqual(balance);
 		return list;
 	}
