@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class OrderSet {
+public class OrderCombo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long orderSetId;
+	private Long orderComboId;
 	
 	@ManyToOne //fk
 	@Column(nullable=false)
@@ -20,26 +20,26 @@ public class OrderSet {
 	
 	@ManyToOne //fk
 	@Column(nullable=false)
-	private Set set;
+	private Combo combo;
 
-	public OrderSet() {
+	public OrderCombo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderSet(Long orderSetId, Order order, Set set) {
+	public OrderCombo(Long orderComboId, Order order, Combo combo) {
 		super();
-		this.orderSetId = orderSetId;
+		this.orderComboId = orderComboId;
 		this.order = order;
-		this.set = set;
+		this.combo = combo;
 	}
 
-	public Long getOrderSetId() {
-		return orderSetId;
+	public Long getOrderComboId() {
+		return orderComboId;
 	}
 
-	public void setOrderSetId(Long orderSetId) {
-		this.orderSetId = orderSetId;
+	public void setOrderComboId(Long orderComboId) {
+		this.orderComboId = orderComboId;
 	}
 
 	public Order getOrder() {
@@ -50,17 +50,17 @@ public class OrderSet {
 		this.order = order;
 	}
 
-	public Set getSet() {
-		return set;
+	public Combo getCombo() {
+		return combo;
 	}
 
-	public void setSet(Set set) {
-		this.set = set;
+	public void setCombo(Combo combo) {
+		this.combo = combo;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderSet [orderSetId=" + orderSetId + ", order=" + order + "]";
+		return "OrderCombo [orderComboId=" + orderComboId + ", order=" + order + "]";
 	}
 	
 }
