@@ -31,6 +31,28 @@ public class RequestItemController {
 	@Autowired
 	ItemRepository itemRepository;
 
+	/* POST ORDER ITEM */
+	@PostMapping("/requestitem/{rid}/{iid}")
+	public RequestItem postRequestItem(@RequestBody RequestItem requestItem, @PathVariable("rid") Long rid, @PathVariable("iid") Long iid) {
+		//get request
+		Optional<Request> optionalRequest = requestRepository.findById(rid);
+		if (!optionalRequest.isPresent()) {
+			throw new RuntimeException("Order ID is invalid");
+		}
+		Request request = optionalRequest.get();
+		
+		//get item
+		Optional<Item> optionalItem = itemRepository.findById(iid);
+		if (!optionalItem.isPresent()) {
+			throw new RuntimeException("Item ID is invalid");
+		}
+		Item item = optionalItem.get();
+		
+		requestItem.setRequest(request);
+		requestItem.setItem(item);
+		return requestItemRepository.save(requestItem);	
+	}
+	
 	/* GET REQUEST ITEMS BY ID */
 	@GetMapping("/requestitem/{id}")
 	public RequestItem getRequestItem(@PathVariable("id") Long id) {
@@ -57,28 +79,6 @@ public class RequestItemController {
 	@GetMapping("/requestitems")
 	public List<RequestItem> getAllRequestItems() {
 		return requestItemRepository.findAll();
-	}
-	
-	/* POST ORDER ITEM */
-	@PostMapping("/requestitem/{rid}/{iid}")
-	public RequestItem postRequestItem(@RequestBody RequestItem requestItem, @PathVariable("rid") Long rid, @PathVariable("iid") Long iid) {
-		//get request
-		Optional<Request> optionalRequest = requestRepository.findById(rid);
-		if (!optionalRequest.isPresent()) {
-			throw new RuntimeException("Order ID is invalid");
-		}
-		Request request = optionalRequest.get();
-		
-		//get item
-		Optional<Item> optionalItem = itemRepository.findById(iid);
-		if (!optionalItem.isPresent()) {
-			throw new RuntimeException("Item ID is invalid");
-		}
-		Item item = optionalItem.get();
-		
-		requestItem.setRequest(request);
-		requestItem.setItem(item);
-		return requestItemRepository.save(requestItem);	
 	}
 	
 	/* UPDATE ORDER ITEM */

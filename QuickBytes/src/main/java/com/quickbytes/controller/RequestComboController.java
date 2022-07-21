@@ -32,6 +32,29 @@ public class RequestComboController {
 	@Autowired
 	ComboRepository comboRepository;
 	
+	/* POST NEW REQUEST COMBO */
+	@PostMapping("/requestcombo/{rid}/{cid}")
+	public RequestCombo postRequestCombo(@RequestBody RequestCombo requestCombo, @PathVariable("rid") Long rid, 
+									@PathVariable("cid") Long cid) {
+		//get request
+		Optional<Request> optionalRequest = requestRepository.findById(rid);
+		if (!optionalRequest.isPresent()) {
+			throw new RuntimeException("Request ID is invalid");
+		}
+		Request request = optionalRequest.get();
+		
+		//get combo
+		Optional<Combo> optionalCombo = comboRepository.findById(cid);
+		if (!optionalCombo.isPresent()) {
+			throw new RuntimeException("Combo ID is invalid");
+		}
+		Combo combo = optionalCombo.get();
+		
+		requestCombo.setRequest(request);
+		requestCombo.setCombo(combo);
+		return requestComboRepository.save(requestCombo);	
+	}
+	
 	/* GET REQUEST COMBO BY ID */
 	@GetMapping("/requestcombo/{id}")
 	public RequestCombo getRequestCombo(@PathVariable("id") Long id) {
@@ -58,29 +81,6 @@ public class RequestComboController {
 	@GetMapping("/requestcombos")
 	public List<RequestCombo> getAllRequestCombos() {
 		return requestComboRepository.findAll();
-	}
-	
-	/* POST NEW REQUEST COMBO */
-	@PostMapping("/requestcombo/{rid}/{cid}")
-	public RequestCombo postRequestCombo(@RequestBody RequestCombo requestCombo, @PathVariable("rid") Long rid, 
-									@PathVariable("cid") Long cid) {
-		//get request
-		Optional<Request> optionalRequest = requestRepository.findById(rid);
-		if (!optionalRequest.isPresent()) {
-			throw new RuntimeException("Request ID is invalid");
-		}
-		Request request = optionalRequest.get();
-		
-		//get combo
-		Optional<Combo> optionalCombo = comboRepository.findById(cid);
-		if (!optionalCombo.isPresent()) {
-			throw new RuntimeException("Combo ID is invalid");
-		}
-		Combo combo = optionalCombo.get();
-		
-		requestCombo.setRequest(request);
-		requestCombo.setCombo(combo);
-		return requestComboRepository.save(requestCombo);	
 	}
 	
 	/* UPDATE EXISTING REQUEST COMBO BY ID */

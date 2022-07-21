@@ -11,14 +11,14 @@ import com.quickbytes.model.RequestCombo;
 public interface RequestComboRepository extends JpaRepository<RequestCombo,Long>{
 	
 	@Query("select rc from RequestCombo rc where rc.request.requestId=?1")
-	List<RequestCombo> getAllRequestCombosByRequestId(Long oid);
+	List<RequestCombo> getAllRequestCombosByRequestId(Long rid);
 
 	@Query("select rc from RequestCombo rc where rc.combo.comboId=?1")
-	List<RequestCombo> getAllRequestCombosByComboId(Long oid);
+	List<RequestCombo> getAllRequestCombosByComboId(Long cid);
 
 	@Modifying
 	@Query("delete RequestCombo rc where rc.request.requestId=?1")
-	long deleteAllRequestCombosByRequestId(Long oid);
+	long deleteAllRequestCombosByRequestId(Long rid);
 
 //	@Modifying
 //	@Query("delete RequestCombo rc where rc.combo.comboId=?1 limit ?2")

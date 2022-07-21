@@ -32,6 +32,28 @@ public class RequestController {
 	@Autowired
 	private VendorRepository vendorRepository;
 	
+	/* POST NEW REQUEST */
+	@PostMapping("/request/{cid}/{vid}")
+	public Request postRequest(@RequestBody Request request, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
+		//get customer
+		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
+		if (!optionalCustomer.isPresent()) {
+			throw new RuntimeException("Customer ID is invalid");
+		}
+		Customer customer = optionalCustomer.get();
+		
+		//get vendor
+		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		if (!optionalVendor.isPresent()) {
+			throw new RuntimeException("Vendor ID is invalid");
+		}
+		Vendor vendor = optionalVendor.get();
+		
+		request.setCustomer(customer);
+		request.setVendor(vendor);
+		return requestRepository.save(request);	
+	}
+	
 	/* GET ALL REQUESTS */
 	@GetMapping("/requests")
 	public List<Request> getAllRequests() {
@@ -58,28 +80,6 @@ public class RequestController {
 	@GetMapping("/request/vid/{vid}")
 	public List<Request> getAllRequestsByVendorId(@PathVariable("vid") Long vid) {
 		return requestRepository.getAllRequestsByVendorId(vid);
-	}
-	
-	/* POST NEW REQUEST */
-	@PostMapping("/request/{cid}/{vid}")
-	public Request postRequest(@RequestBody Request request, @PathVariable("cid") Long cid, @PathVariable("vid") Long vid) {
-		//get customer
-		Optional<Customer> optionalCustomer = customerRepository.findById(cid);
-		if (!optionalCustomer.isPresent()) {
-			throw new RuntimeException("Customer ID is invalid");
-		}
-		Customer customer = optionalCustomer.get();
-		
-		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
-		if (!optionalVendor.isPresent()) {
-			throw new RuntimeException("Vendor ID is invalid");
-		}
-		Vendor vendor = optionalVendor.get();
-		
-		request.setCustomer(customer);
-		request.setVendor(vendor);
-		return requestRepository.save(request);	
 	}
 	
 	/* UPDATE EXISTING REQUEST */
