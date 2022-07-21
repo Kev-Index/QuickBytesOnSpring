@@ -1,8 +1,24 @@
 # QuickBytesOnSpring
+### Jerry
+Customer/CustomerController/CustomerRepository
+- [x] postCustomer()
+- [x] getAllCustomer()
+- [x] getCustomerByID()
+- [x] deleteCustomerByID()
+- [x] updateCustomerByID()
+- [x] getCustomerByEmployeeID()
+- [x] getCustomerByUsername()
+- [x] getListCustomerWithFirstName()
+- [x] getListCustomerWithLastName()
+- [x] getListCustomerWithBalanceGreaterThanOrEqual()
+- [x] getListCustomerWithBalanceLessThanOrEqual()
 
-> Current Available Functionality
-- Jerry: postCustomer(), getAllCustomer(), getCustomerByID(), deleteCustomerByID(), updateCustomerByID(), getCustomerByEmployeeID(), getCustomerByUsername(), getListCustomerWithFirstName(), getListCustomerWithLastName(), getListCustomerWithBalanceGreaterThanOrEqual(), getListCustomerWithBalanceLessThanOrEqual()
-
+Admin/AdminController/AdminRepository
+- [ ] postAdmin()
+- [ ] getAllAdmins()
+- [ ] getAdmin()
+- [ ] putAdmin()
+- [ ] deleteAdmin()
 
 ### Kevin
 Request/RequestController/RequestRepository
