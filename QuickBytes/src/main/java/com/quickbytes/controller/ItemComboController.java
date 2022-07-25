@@ -34,7 +34,7 @@ public class ItemComboController{
 
 	/* GET ORDER ITEMS BY ID */
 	@GetMapping("/itemcombo/{id}")
-	public ItemCombo getItemCombo(@PathVariable("id") Long id) {
+	public ItemCombo getItemCombo(@PathVariable("id") Long id){
 		Optional<ItemCombo> itemCombo = itemComboRepository.findById(id);
 		if (itemCombo.isPresent()) {
 			return itemCombo.get();
