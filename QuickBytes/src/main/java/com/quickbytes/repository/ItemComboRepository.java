@@ -1,4 +1,4 @@
-package com.quickbytes.repository;
+ package com.quickbytes.repository;
 
 import java.util.List;
 
