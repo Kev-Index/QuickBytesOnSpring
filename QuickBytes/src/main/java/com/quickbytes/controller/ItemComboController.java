@@ -121,11 +121,11 @@ public class ItemComboController{
 		return itemComboRepository.deleteAllItemCombosByItemId(iid);
 	}
 	
-	/* DELETE SOME ORDER ITEMS BY ITEM ID */
-	@DeleteMapping("/itemcombo/sid/{sid}")
-	public Item deleteItemCombosByComboId(@PathVariable("sid") Long sid) {
-		return itemComboRepository.deleteItemCombosByComboId(sid);
-	}
+//	/* DELETE SOME ORDER ITEMS BY ITEM ID */
+//	@DeleteMapping("/itemcombo/sid/{sid}")
+//	public Item deleteItemCombosByComboId(@PathVariable("sid") Long sid) {
+//		return itemComboRepository.deleteItemCombosByComboId(sid);
+//	}
 	
 	/* DELETE ALL ORDER ITEMS BY ITEM ID */
 	@DeleteMapping("/itemcombo/sid/{sid}")
