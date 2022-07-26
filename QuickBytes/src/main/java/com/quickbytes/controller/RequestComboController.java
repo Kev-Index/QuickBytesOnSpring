@@ -134,6 +134,12 @@ public class RequestComboController {
 		requestComboRepository.deleteAllRequestCombosByComboId(cid);
 	}
 	
+	/* DELETE ALL REQUEST COMBOS BY REQUEST & COMBO ID */
+	@DeleteMapping("/requestitem/rid/iid/{rid}/{cid}")
+	public void deleteAllRequestCombosByRequestAndComboId(@PathVariable("rid") Long rid,@PathVariable("cid") Long cid) {
+		requestComboRepository.deleteAllRequestCombosByRequestAndComboId(rid,cid);
+	}
+	
 	/* DELETE ALL REQUEST COMBOS */
 	@DeleteMapping("/requestcombos")
 	public void deleteAllRequestCombos() {

@@ -108,7 +108,7 @@ public class RequestItemController {
 		return requestItemRepository.save(requestItem);	
 	}
 	
-	/* DELETE ORDER ITEM BY ID */
+	/* DELETE REQUEST ITEM BY ID */
 	@DeleteMapping("/requestitem/{id}")
 	public void deleteRequestItem(@PathVariable("id") Long id) {
 		requestItemRepository.deleteById(id);
@@ -130,6 +130,12 @@ public class RequestItemController {
 	@DeleteMapping("/requestitem/iid/{iid}")
 	public void deleteAllRequestItemsByItemId(@PathVariable("iid") Long iid) {
 		requestItemRepository.deleteAllRequestItemsByItemId(iid);
+	}
+	
+	/* DELETE ALL REQUEST ITEMS BY REQUEST & ITEM ID */
+	@DeleteMapping("/requestitem/rid/iid/{rid}/{iid}")
+	public void deleteAllRequestItemsByRequestAndItemId(@PathVariable("rid") Long rid,@PathVariable("iid") Long iid) {
+		requestItemRepository.deleteAllRequestItemsByRequestAndItemId(rid,iid);
 	}
 	
 	/* DELETE ALL REQUEST ITEMS */
