@@ -1,5 +1,6 @@
 package com.quickbytes.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -158,7 +159,7 @@ public class RequestController {
 	
 	/* UPDATE EXISTING REQUEST'S ORDER TIME */
 	@PutMapping("/request/ordertime/{id}/{ordertime}")
-	public Request putRequestRequestTime(@PathVariable("id") Long id, @PathVariable("ordertime") String ordertime) {
+	public Request putRequestRequestTime(@PathVariable("id") Long id, @PathVariable("ordertime") LocalDate ordertime) {
 		//get request
 		Request request = getRequest(id);
 		
@@ -169,7 +170,7 @@ public class RequestController {
 	
 	/* UPDATE EXISTING REQUEST'S END TIME */
 	@PutMapping("/request/endtime/{id}/{endtime}")
-	public Request putRequestEndTime(@PathVariable("id") Long id, @PathVariable("endtime") String endtime) {
+	public Request putRequestEndTime(@PathVariable("id") Long id, @PathVariable("endtime") LocalDate endtime) {
 		//get request
 		Request request = getRequest(id);
 		

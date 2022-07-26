@@ -1,5 +1,7 @@
 package com.quickbytes.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +25,10 @@ public class Request {
 	private RequestStatus status;
 	
 	@Column(nullable=false)
-	private String orderTime;
+	private LocalDate orderTime;
 	
 	@Column(nullable=false)
-	private String endTime;
+	private LocalDate endTime;
 	
 	@ManyToOne //fk
 	private Customer customer;
@@ -39,7 +41,7 @@ public class Request {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Request(Long requestId, Float totalPrice, RequestStatus status, String orderTime, String endTime, Customer customer,
+	public Request(Long requestId, Float totalPrice, RequestStatus status, LocalDate orderTime, LocalDate endTime, Customer customer,
 			Vendor vendor) {
 		super();
 		this.requestId = requestId;
@@ -75,19 +77,19 @@ public class Request {
 		this.status = status;
 	}
 
-	public String getOrderTime() {
+	public LocalDate getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(String orderTime) {
+	public void setOrderTime(LocalDate orderTime) {
 		this.orderTime = orderTime;
 	}
 
-	public String getEndTime() {
+	public LocalDate getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(String endTime) {
+	public void setEndTime(LocalDate endTime) {
 		this.endTime = endTime;
 	}
 
