@@ -15,6 +15,17 @@ public class Combo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long comboId;
 	
+
+	private String name;
+	
+	@OneToMany//fk
+	List<ItemCombo> itemComboList;
+	
 	@OneToMany //fk
 	private List<RequestCombo> requestCombos;
+
+	
+	
+
+
 }

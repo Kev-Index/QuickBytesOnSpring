@@ -13,6 +13,7 @@ public class VendorController {
 	@Autowired
 	VendorRepository vendorRepository;
 	
+	//give 
 	@PostMapping("/vendor")
 	public void postVendor(@RequestBody Vendor v) {
 		//use JpaRepository Interface
