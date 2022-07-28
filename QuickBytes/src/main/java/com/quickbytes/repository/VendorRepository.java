@@ -10,5 +10,8 @@ import com.quickbytes.model.Vendor;
 public interface VendorRepository extends JpaRepository<Vendor,Long> {
 	@Query("select v from Vendor v where v.name=?1")
 	Optional<Vendor> findByname(String name);
+	
+	@Query("select v from Vendor v where v.username=?1")
+	Optional<Vendor> getByUsername(String name);
   
 }

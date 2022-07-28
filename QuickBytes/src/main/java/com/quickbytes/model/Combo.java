@@ -1,4 +1,4 @@
-package com.springboot.backend.model;
+package com.quickbytes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +25,20 @@ public class Combo {
 	
 	@Column(nullable=false)
 	private Long vendorId;
+
+	public Combo(Long comboId, String name, float price, Integer available, Long vendorId) {
+		super();
+		this.comboId = comboId;
+		this.name = name;
+		this.price = price;
+		this.available = available;
+		this.vendorId = vendorId;
+	}
+
+	public Combo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getComboId() {
 		return comboId;

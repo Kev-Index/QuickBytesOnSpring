@@ -1,9 +1,10 @@
-package com.springboot.backend.controller;
+package com.quickbytes.controller;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Combo;
-import com.springboot.backend.model.Vendor;
-import com.springboot.backend.repository.VendorRepository;
+import com.quickbytes.model.Combo;
+import com.quickbytes.model.Vendor;
+import com.quickbytes.repository.VendorRepository;
 
 @RestController
 public class VendorController {
@@ -22,12 +23,18 @@ public class VendorController {
 		@Autowired
 		private VendorRepository vendorRepository;
 		
+		@Autowired
+		private PasswordEncoder passwordEncoder; 
+		
 		@PostMapping("/vendor")
 		public void postVendor(@RequestBody Vendor vendor) {
+			String password = vendor.getPassword();
+			password = passwordEncoder.encode(password);
+			vendor.setPassword(password);
 			vendorRepository.save(vendor);
 		}
 		
-		@GetMapping("/vendor")
+		@GetMapping("/vendors")
 		public List<Vendor> getAllVendors(){
 			return vendorRepository.findAll();
 		}
@@ -62,7 +69,7 @@ public class VendorController {
 			}
 		
 		@GetMapping("/vendor/{name}")
-		public Long getVendorId(@PathVariable("name") String name) {
+		public Long getVendorIdByName(@PathVariable("name") String name) {
 			Optional<Vendor> optional=vendorRepository.findByname(name);
 			if(optional.isPresent())
 				return optional.get().getVendorId();

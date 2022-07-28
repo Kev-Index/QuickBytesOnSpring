@@ -1,4 +1,4 @@
-package com.springboot.backend.model;
+package com.quickbytes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

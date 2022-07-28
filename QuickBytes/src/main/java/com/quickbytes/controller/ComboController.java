@@ -1,4 +1,4 @@
-	package com.springboot.backend.controller;
+	package com.quickbytes.controller;
 
 	import java.util.List;
 	import java.util.Optional;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.backend.model.Combo;
-	import com.springboot.backend.model.Vendor;
-import com.springboot.backend.repository.ComboRepository;
-	import com.springboot.backend.repository.VendorRepository;
+import com.quickbytes.model.Combo;
+	import com.quickbytes.model.Vendor;
+import com.quickbytes.repository.ComboRepository;
+	import com.quickbytes.repository.VendorRepository;
 
 	@RestController
 	public class ComboController {
@@ -57,7 +57,7 @@ import com.springboot.backend.repository.ComboRepository;
 		}
 		
 		@GetMapping("/combo/{name}")
-		public Long getComboId(@PathVariable("name") String name) {
+		public Long getComboIdByName(@PathVariable("name") String name) {
 			Optional<Combo> optional=comboRepository.findByname(name);
 			if(optional.isPresent())
 				return optional.get().getComboId();
