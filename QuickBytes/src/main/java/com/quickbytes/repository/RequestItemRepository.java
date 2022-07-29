@@ -28,4 +28,7 @@ public interface RequestItemRepository extends JpaRepository<RequestItem, Long>{
 	@Query("delete RequestItem ri where ri.item.itemId=?1")
 	long deleteAllRequestItemsByItemId(Long iid);
 
+	@Modifying
+	@Query("delete RequestItem ri where ri.request.requestId=?1 and ri.item.itemId=?2")
+	void deleteAllRequestItemsByRequestAndItemId(Long rid, Long iid);
 }
