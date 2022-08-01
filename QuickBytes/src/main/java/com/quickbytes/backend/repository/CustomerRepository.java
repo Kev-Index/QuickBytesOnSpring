@@ -12,8 +12,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	List<Customer> getListCustomerWithFirstName(String firstName);
 	@Query("select c from Customer c where c.lastName=?1")
 	List<Customer> getListCustomerWithLastName(String lastName);
-	@Query("select c from Customer c where c.username=?1")
-	Customer getCustomerByUsername(String username);
+	//@Query("select c from Customer c where c.username=?1")
+	//Customer getCustomerByUsername(String username);
 	@Query("select c from Customer c where c.employeeId=?1")
 	Customer getCustomerByEmployeeId(int eid);
 	@Query("select c from Customer c where c.balance>=?1")
