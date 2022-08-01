@@ -68,7 +68,7 @@ public class ItemController {
 		}
 	}
 	@GetMapping("/item/vendor/{vid}")
-	public List<Item> getProductsByVendorId(@PathVariable("vid") Long vid) {
+	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid) {
 		return itemRepository.findByVendorId(vid);
 	}
 }

@@ -1,15 +1,19 @@
 package com.quickbytes.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.enums.RequestStatus;
@@ -56,8 +60,10 @@ public class RequestController {
 	
 	/* GET ALL REQUESTS */
 	@GetMapping("/requests")
-	public List<Request> getAllRequests() {
-		return requestRepository.findAll();
+	public List<Request> getAllRequests(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
+			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
+		Pageable pageable = PageRequest.of(page, size);	
+		return requestRepository.findAll(pageable).getContent();
 	}
 	
 	/* GET REQUEST BY ID */
@@ -158,7 +164,7 @@ public class RequestController {
 	
 	/* UPDATE EXISTING REQUEST'S ORDER TIME */
 	@PutMapping("/request/ordertime/{id}/{ordertime}")
-	public Request putRequestRequestTime(@PathVariable("id") Long id, @PathVariable("ordertime") String ordertime) {
+	public Request putRequestRequestTime(@PathVariable("id") Long id, @PathVariable("ordertime") LocalDate ordertime) {
 		//get request
 		Request request = getRequest(id);
 		
@@ -169,7 +175,7 @@ public class RequestController {
 	
 	/* UPDATE EXISTING REQUEST'S END TIME */
 	@PutMapping("/request/endtime/{id}/{endtime}")
-	public Request putRequestEndTime(@PathVariable("id") Long id, @PathVariable("endtime") String endtime) {
+	public Request putRequestEndTime(@PathVariable("id") Long id, @PathVariable("endtime") LocalDate endtime) {
 		//get request
 		Request request = getRequest(id);
 		

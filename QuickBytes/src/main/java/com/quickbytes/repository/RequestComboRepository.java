@@ -28,5 +28,7 @@ public interface RequestComboRepository extends JpaRepository<RequestCombo,Long>
 	@Query("delete RequestCombo rc where rc.combo.comboId=?1")
 	long deleteAllRequestCombosByComboId(Long cid);
 	
-
+	@Modifying
+	@Query("delete RequestCombo rc where rc.request.requestId=?1 and rc.combo.comboId=?2")
+	void deleteAllRequestCombosByRequestAndComboId(Long rid, Long cid);
 }

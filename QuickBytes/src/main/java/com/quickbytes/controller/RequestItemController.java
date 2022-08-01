@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Request;
@@ -74,11 +77,13 @@ public class RequestItemController {
 	public List<RequestItem> getAllRequestItemsByItemId(@PathVariable("iid") Long iid) {
 		return requestItemRepository.getAllRequestItemsByItemId(iid);
 	}
-	
+
 	/* GET ALL REQUEST ITEMS */
 	@GetMapping("/requestitems")
-	public List<RequestItem> getAllRequestItems() {
-		return requestItemRepository.findAll();
+	public List<RequestItem> getAllRequestItems(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
+			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
+		Pageable pageable = PageRequest.of(page, size);	
+		return requestItemRepository.findAll(pageable).getContent();
 	}
 	
 	/* UPDATE ORDER ITEM */
@@ -108,7 +113,7 @@ public class RequestItemController {
 		return requestItemRepository.save(requestItem);	
 	}
 	
-	/* DELETE ORDER ITEM BY ID */
+	/* DELETE REQUEST ITEM BY ID */
 	@DeleteMapping("/requestitem/{id}")
 	public void deleteRequestItem(@PathVariable("id") Long id) {
 		requestItemRepository.deleteById(id);
@@ -130,6 +135,12 @@ public class RequestItemController {
 	@DeleteMapping("/requestitem/iid/{iid}")
 	public void deleteAllRequestItemsByItemId(@PathVariable("iid") Long iid) {
 		requestItemRepository.deleteAllRequestItemsByItemId(iid);
+	}
+	
+	/* DELETE ALL REQUEST ITEMS BY REQUEST & ITEM ID */
+	@DeleteMapping("/requestitem/rid/iid/{rid}/{iid}")
+	public void deleteAllRequestItemsByRequestAndItemId(@PathVariable("rid") Long rid,@PathVariable("iid") Long iid) {
+		requestItemRepository.deleteAllRequestItemsByRequestAndItemId(rid,iid);
 	}
 	
 	/* DELETE ALL REQUEST ITEMS */

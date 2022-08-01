@@ -19,6 +19,7 @@ import com.quickbytes.repository.VendorRepository;
 
 @RestController
 public class VendorController {
+
 		
 		@Autowired
 		private VendorRepository vendorRepository;
@@ -75,5 +76,5 @@ public class VendorController {
 				return optional.get().getVendorId();
 			throw new RuntimeException("Name is invalid");
 		}
-	}
+}
 
