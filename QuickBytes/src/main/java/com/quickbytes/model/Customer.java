@@ -1,4 +1,4 @@
-package com.quickbytes.backend.model;
+package com.quickbytes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,13 +23,13 @@ public class Customer {
 	@Column(nullable = false)
 	private String password;
 	@Column(nullable = false)
-	private float balance;
+	private Float balance;
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Customer(Long customerId, int employeeId, String firstName, String lastName, String username,
-			String password, float balance) {
+			String password, Float balance) {
 		super();
 		this.customerId = customerId;
 		this.employeeId = employeeId;
@@ -78,7 +78,7 @@ public class Customer {
 	public float getBalance() {
 		return balance;
 	}
-	public void setBalance(float balance) {
+	public void setBalance(Float balance) {
 		this.balance = balance;
 	}
 	@Override

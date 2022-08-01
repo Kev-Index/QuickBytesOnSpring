@@ -1,0 +1,27 @@
+{
+	"totalPrice": 999.9,
+	"status": "PENDING",
+	"orderTime": "12:00",
+	"endTime": "15:00"
+}
+
+{
+	"totalPrice": 10.0,
+	"status": "IN_PROGRESS",
+	"orderTime": "01:00",
+	"endTime": "11:00"
+}
+
+{
+	"totalPrice": 123.4,
+	"status": "APPROVED",
+	"orderTime": "00:00",
+	"endTime": "04:44"
+}
+
+{
+	"totalPrice": 537.8,
+	"status": "DENIED",
+	"orderTime": "10:00",
+	"endTime": "23:00"
+}
