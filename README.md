@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SpingQuick
 
 > Current Available Functionality
@@ -40,8 +39,6 @@ APISecurityConfig
 Pagination
 - [ ] Pending
 
-
-=======
 # QuickBytesOnSpring
 ### Jerry
 Customer/CustomerController/CustomerRepository
@@ -107,5 +104,3 @@ RequestCombo/RequestComboController/RequestComboRepository
 - [x] deleteAllRequestCombosByComboId()
 - [x] deleteAllRequestCombos()
 
-James
->>>>>>> main
