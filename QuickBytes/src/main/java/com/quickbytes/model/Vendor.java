@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Vendor {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long vendorId;
@@ -39,11 +40,11 @@ public class Vendor {
 		return "Vendor [vendorId=" + vendorId + ", name=" + name + "]";
 	}
 
-	public Long getId() {
+	public Long getVendorId() {
 		return vendorId;
 	}
 
-	public void setId(Long vendorId) {
+	public void setVendorId(Long vendorId) {
 		this.vendorId = vendorId;
 	}
 }
