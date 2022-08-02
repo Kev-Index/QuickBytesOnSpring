@@ -1,4 +1,4 @@
-package com.quickbytes.backend.controller;
+package com.quickbytes.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.backend.model.Customer;
-import com.quickbytes.backend.repository.CustomerRepository;
+import com.quickbytes.model.Customer;
+import com.quickbytes.repository.CustomerRepository;
 
 @RestController
 public class CustomerController {
