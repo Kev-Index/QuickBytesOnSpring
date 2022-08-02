@@ -1,4 +1,4 @@
-package com.quickbytes.backend.service;
+package com.quickbytes.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.quickbytes.backend.model.UserInfo;
-import com.quickbytes.backend.repository.UserRepository;
+import com.quickbytes.model.UserInfo;
+import com.quickbytes.repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {

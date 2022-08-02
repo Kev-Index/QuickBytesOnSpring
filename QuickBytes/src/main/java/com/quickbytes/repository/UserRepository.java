@@ -1,9 +1,9 @@
-package com.quickbytes.backend.repository;
+package com.quickbytes.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.quickbytes.backend.model.UserInfo;
+import com.quickbytes.model.UserInfo;
 
 public interface UserRepository extends JpaRepository<UserInfo, Long> {
 	// SELECT <Column> from <Table>

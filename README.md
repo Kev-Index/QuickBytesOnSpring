@@ -1,5 +1,3 @@
-# SpingQuick
-
 # QuickBytesOnSpring
 ### Jerry
 Customer/CustomerController/CustomerRepository
@@ -10,10 +8,10 @@ Customer/CustomerController/CustomerRepository
 - [x] updateCustomerByID() ISSUE #1
 - [x] getCustomerByEmployeeID() ISSUE #2
 - [x] getCustomerByUsername() CHECK
-- [x] getListCustomerWithFirstName() CHECK
-- [x] getListCustomerWithLastName() CHECK
-- [x] getListCustomerWithBalanceGreaterThanOrEqual() CHECK
-- [x] getListCustomerWithBalanceLessThanOrEqual() CHECK
+- [x] getListCustomerWithFirstName()
+- [x] getListCustomerWithLastName()
+- [x] getListCustomerWithBalanceGreaterThanOrEqual()
+- [x] getListCustomerWithBalanceLessThanOrEqual()
 
 Admin/AdminController/AdminRepository
 - [x] postAdmin()  CHECK

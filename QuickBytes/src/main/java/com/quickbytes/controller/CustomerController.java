@@ -19,6 +19,7 @@ import com.quickbytes.repository.CustomerRepository;
 public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
+
 	
 	// Post Customer \\
 	@PostMapping("/customer")
@@ -27,7 +28,7 @@ public class CustomerController {
 	}
 	// Get All Customer in a List<Customer>  \\
 	@GetMapping("/customer")
-	public List<Customer>getAllCustomer(@RequestBody Customer customer){
+	public List<Customer>getAllCustomer(){
 		return customerRepository.findAll();
 	}
 	// Get Specific Customer by CustomerID in Customer Obj \\
@@ -43,24 +44,36 @@ public class CustomerController {
 	public void deleteCustomerById(@PathVariable("cid")Long id) {
 		customerRepository.deleteById(id);
 	}
+	
+	/*	ISSUE:
+	 * Instead of updating, creates new record incrementing
+	 * customer id.
+	 * 
+	 * FIXED: 08/01 - Jerry
+	 * */
+	
 	// Update (Put) Customer By CustomerID\\
 	@PutMapping("/customer/{cid}")
-	public void updateCustomerById(@PathVariable("cid")Long id,
+	public void updateCustomerById(@PathVariable("cid")Long cid,
 			@RequestBody Customer updatedCustomer) {
-		Optional<Customer> optional = customerRepository.findById(id);
+		Optional<Customer> optional = customerRepository.findById(cid);
 		if(!optional.isPresent())
 			throw new RuntimeException ("Customer ID Doesn't Exist");
 		Customer existingCustomer = optional.get();
-		updatedCustomer.setEmployeeId(existingCustomer.getEmployeeId());
-		updatedCustomer.setFirstName(existingCustomer.getFirstName());
-		updatedCustomer.setLastName(existingCustomer.getLastName());
-		updatedCustomer.setUsername(existingCustomer.getUsername());
-		updatedCustomer.setPassword(existingCustomer.getPassword());
-		updatedCustomer.setBalance(existingCustomer.getBalance());
-		customerRepository.save(updatedCustomer);
+		existingCustomer.setEmployeeId(updatedCustomer.getEmployeeId());
+		existingCustomer.setFirstName(updatedCustomer.getFirstName());
+		existingCustomer.setLastName(updatedCustomer.getLastName());
+		existingCustomer.setBalance(updatedCustomer.getBalance());
+		existingCustomer.setUserId(existingCustomer.getUserId());
+		customerRepository.save(existingCustomer);
 	}
 	
 	/* Extra Functionality*/
+	
+	/*ISSUE:
+	 * Employee IDs are default 0 so this won't work as aspected.
+	 * Generate random ID or force Admin to provide employee ID for Customers
+	 * */
 	
 	// Get Specific Customer by Employee ID \\
 	@GetMapping("/customer/employee/{eid}")
@@ -68,12 +81,18 @@ public class CustomerController {
 		Customer user = customerRepository.getCustomerByEmployeeId(eid);
 		return user;
 	}
+	
+	/* REMOVED:
+	 * Customers derive username from parent User
+	 * */
+	
 	// Get Specific Customer by user name \\
-	@GetMapping("/customer/user/{username}")
-	public Customer getCustomerByUsername(@PathVariable("username") String username){
-		Customer user = customerRepository.getCustomerByUsername(username);
-		return user;
-	}
+	//@GetMapping("/customer/user/{username}")
+	//public Customer getCustomerByUsername(@PathVariable("username") String username){
+		//Customer user = customerRepository.getCustomerByUsername(username);
+		//return user;
+	//}
+	
 	// Get List <Customer> by First Name \\
 	@GetMapping("/customer/fname/{firstName}")
 	List<Customer> getListCustomerWithFirstName(@PathVariable("firstName") String firstName){

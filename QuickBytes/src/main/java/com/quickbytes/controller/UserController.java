@@ -1,4 +1,4 @@
-package com.quickbytes.backend.controller;
+package com.quickbytes.controller;
 
 import java.util.List;
 
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.backend.model.Admin;
-import com.quickbytes.backend.model.Customer;
-import com.quickbytes.backend.model.UserInfo;
-import com.quickbytes.backend.repository.AdminRepository;
-import com.quickbytes.backend.repository.CustomerRepository;
-import com.quickbytes.backend.repository.UserRepository;
+import com.quickbytes.model.Admin;
+import com.quickbytes.model.Customer;
+import com.quickbytes.model.UserInfo;
+import com.quickbytes.repository.AdminRepository;
+import com.quickbytes.repository.CustomerRepository;
+import com.quickbytes.repository.UserRepository;
 
 @RestController
 public class UserController {
