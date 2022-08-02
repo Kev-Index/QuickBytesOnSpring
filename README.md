@@ -1,6 +1,6 @@
 # SpingQuick
 
-> Current Available Functionality
+# QuickBytesOnSpring
 ### Jerry
 Customer/CustomerController/CustomerRepository
 - [x] postCustomer()
@@ -38,28 +38,6 @@ APISecurityConfig
 
 Pagination
 - [ ] Pending
-
-# QuickBytesOnSpring
-### Jerry
-Customer/CustomerController/CustomerRepository
-- [x] postCustomer()
-- [x] getAllCustomer()
-- [x] getCustomerByID()
-- [x] deleteCustomerByID()
-- [x] updateCustomerByID()
-- [x] getCustomerByEmployeeID()
-- [x] getCustomerByUsername()
-- [x] getListCustomerWithFirstName()
-- [x] getListCustomerWithLastName()
-- [x] getListCustomerWithBalanceGreaterThanOrEqual()
-- [x] getListCustomerWithBalanceLessThanOrEqual()
-
-Admin/AdminController/AdminRepository
-- [ ] postAdmin()
-- [ ] getAllAdmins()
-- [ ] getAdmin()
-- [ ] putAdmin()
-- [ ] deleteAdmin()
 
 ### Kevin
 Request/RequestController/RequestRepository
