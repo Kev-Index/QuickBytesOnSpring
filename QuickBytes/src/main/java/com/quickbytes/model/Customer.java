@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -12,32 +13,28 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customerId;
-	@Column(nullable = false)
-	private int employeeId; // convert int to long? - If name begins with Zeros?
+	//@Column(nullable = false) Te
+	private int employeeId;
 	@Column(nullable = false)
 	private String firstName;
 	@Column(nullable = false)
 	private String lastName;
 	@Column(nullable = false)
-	private String username;
-	@Column(nullable = false)
-	private String password;
-	@Column(nullable = false)
 	private Float balance;
+	@OneToOne
+	private UserInfo userId;
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(Long customerId, int employeeId, String firstName, String lastName, String username,
-			String password, Float balance) {
+	public Customer(Long customerId, int employeeId, String firstName, String lastName, Float balance, UserInfo userId) {
 		super();
 		this.customerId = customerId;
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
 		this.balance = balance;
+		this.userId = userId;
 	}
 	public Long getCustomerId() {
 		return customerId;
@@ -63,29 +60,21 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public float getBalance() {
+	public Float getBalance() {
 		return balance;
 	}
 	public void setBalance(Float balance) {
 		this.balance = balance;
 	}
+	public UserInfo getUserId() {
+		return userId;
+	}
+	public void setUserId(UserInfo userId) {
+		this.userId = userId;
+	}
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", employeeId=" + employeeId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", username=" + username + ", password=" + password + ", balance="
-				+ balance + "]";
+				+ ", lastName=" + lastName + ", balance=" + balance + ", userId=" + userId + "]";
 	}
-	
 }
