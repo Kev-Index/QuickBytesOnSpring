@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quickbytes.dto.RequestDto;
 import com.quickbytes.enums.RequestStatus;
 import com.quickbytes.model.Customer;
 import com.quickbytes.model.Request;
@@ -67,13 +68,18 @@ public class RequestController {
 		return requestRepository.findAll(pageable).getContent();
 	}
 	
-	/* GET REQUEST BY ID 
-	 * NEEDS DTO CONVERSION */
+	/* GET REQUEST BY ID */
 	@GetMapping("/request/{id}")
-	public Request getRequest(@PathVariable("id") Long id) {
-		Optional<Request> request = requestRepository.findById(id);
-		if (request.isPresent()) {
-			return request.get();
+	public RequestDto getRequest(@PathVariable("id") Long id) {
+		Optional<Request> optionalRequest = requestRepository.findById(id);
+		if (optionalRequest.isPresent()) {
+			Request request = optionalRequest.get();
+			RequestDto requestDto = new RequestDto(request.getRequestId(), request.getTotalPrice(), request.getStatus(), request.getOrderTime(), request.getEndTime(), 
+									request.getCustomer().getCustomerId(), request.getCustomer().getEmployeeId(), request.getCustomer().getFirstName(), request.getCustomer().getLastName(), request.getCustomer().getBalance(), 
+									request.getCustomer().getUserId().getId(), request.getCustomer().getUserId().getUsername(), request.getCustomer().getUserId().getRole(), 
+									request.getVendor().getId(), request.getVendor().getBusinessId(), request.getVendor().getName(), 
+									request.getVendor().getUser().getId(), request.getVendor().getUser().getUsername(), request.getVendor().getUser().getRole());
+			return requestDto;
 		}
 		throw new RuntimeException("ID is invalid");
 	}

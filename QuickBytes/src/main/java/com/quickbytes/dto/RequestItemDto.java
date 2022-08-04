@@ -11,20 +11,25 @@ public class RequestItemDto {
 	private RequestStatus status;
 	private LocalDate orderTime;
 	private LocalDate endTime;
+	
 	private Long customerId;
 	private Integer customerEmployeeId;
 	private String customerFirstName;
 	private String customerLastName;
 	private Float customerBalance;
+	
 	private Long customerUserId;
 	private String customerUsername;
 	private String customerUserRole;
+	
 	private Long vendorId;
 	private Integer vendorBusinessId;
 	private String vendorName;
+	
 	private Long vendorUserId;
 	private String vendorUsername;
 	private String vendorUserRole;
+	
 	private Long itemId;
 	private String itemName;
 	private Float itemPrice;
