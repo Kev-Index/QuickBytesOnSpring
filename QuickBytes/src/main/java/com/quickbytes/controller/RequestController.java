@@ -70,7 +70,17 @@ public class RequestController {
 	
 	/* GET REQUEST BY ID */
 	@GetMapping("/request/{id}")
-	public RequestDto getRequest(@PathVariable("id") Long id) {
+	public Request getRequest(@PathVariable("id") Long id) {
+		Optional<Request> optionalRequest = requestRepository.findById(id);
+		if (optionalRequest.isPresent()) {
+			return optionalRequest.get();
+		}
+		throw new RuntimeException("ID is invalid");
+	}
+	
+	/* GET REQUEST BY ID */
+	@GetMapping("/requestDto/{id}")
+	public RequestDto getRequestDto(@PathVariable("id") Long id) {
 		Optional<Request> optionalRequest = requestRepository.findById(id);
 		if (optionalRequest.isPresent()) {
 			Request request = optionalRequest.get();
