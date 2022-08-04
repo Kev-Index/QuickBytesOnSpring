@@ -58,7 +58,8 @@ public class RequestController {
 		return requestRepository.save(request);	
 	}
 	
-	/* GET ALL REQUESTS */
+	/* GET ALL REQUESTS 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requests")
 	public List<Request> getAllRequests(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
 			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
@@ -66,7 +67,8 @@ public class RequestController {
 		return requestRepository.findAll(pageable).getContent();
 	}
 	
-	/* GET REQUEST BY ID */
+	/* GET REQUEST BY ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/request/{id}")
 	public Request getRequest(@PathVariable("id") Long id) {
 		Optional<Request> request = requestRepository.findById(id);
@@ -76,13 +78,15 @@ public class RequestController {
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET ALL REQUESTS BY CUSTOMER ID */
+	/* GET ALL REQUESTS BY CUSTOMER ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/request/cid/{cid}")
 	public List<Request> getAllRequestsByCustomerId(@PathVariable("cid") Long cid) {
 		return requestRepository.getAllRequestsByCustomerId(cid);
 	}
 	
-	/* GET ALL REQUESTS BY VENDOR ID */
+	/* GET ALL REQUESTS BY VENDOR ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/request/vid/{vid}")
 	public List<Request> getAllRequestsByVendorId(@PathVariable("vid") Long vid) {
 		return requestRepository.getAllRequestsByVendorId(vid);

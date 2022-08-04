@@ -58,7 +58,8 @@ public class RequestComboController {
 		return requestComboRepository.save(requestCombo);	
 	}
 	
-	/* GET REQUEST COMBO BY ID */
+	/* GET REQUEST COMBO BY ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/{id}")
 	public RequestCombo getRequestCombo(@PathVariable("id") Long id) {
 		Optional<RequestCombo> requestCombo = requestComboRepository.findById(id);
@@ -68,19 +69,22 @@ public class RequestComboController {
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET ALL REQUEST COMBOS BY REQUEST ID */
+	/* GET ALL REQUEST COMBOS BY REQUEST ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/rid/{rid}")
 	public List<RequestCombo> getAllRequestCombosByRequestId(@PathVariable("rid") Long rid) {
 		return requestComboRepository.getAllRequestCombosByRequestId(rid);
 	}
 	
-	/* GET ALL REQUEST COMBOS BY COMBO ID */
+	/* GET ALL REQUEST COMBOS BY COMBO ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/cid/{cid}")
 	public List<RequestCombo> getAllRequestCombosByComboId(@PathVariable("rid") Long rid) {
 		return requestComboRepository.getAllRequestCombosByComboId(rid);
 	}
 	
-	/* GET ALL REQUEST COMBOS */
+	/* GET ALL REQUEST COMBOS 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombos")
 	public List<RequestCombo> getAllRequestCombos(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
 			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
