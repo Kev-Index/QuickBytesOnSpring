@@ -25,8 +25,7 @@ public class Combo {
 	private Integer available;
 	
 	@OneToOne
-	@Column(nullable=false)
-	private Long vendorId;
+	private Vendor vendor;
 
 	public Combo(Long comboId, String name, float price, Integer available, Long vendorId) {
 		super();

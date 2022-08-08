@@ -64,6 +64,7 @@ public class UserController {
 			Vendor v=new Vendor();
 			v.setName((String)user.getUsername()+ "Please Change Name");
 			v.setBusinessId((long) 0);
+			
 		}
 	}
 	
