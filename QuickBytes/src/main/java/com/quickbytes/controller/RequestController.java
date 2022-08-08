@@ -78,21 +78,21 @@ public class RequestController {
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET REQUEST BY ID */
-	@GetMapping("/requestDto/{id}")
-	public RequestDto getRequestDto(@PathVariable("id") Long id) {
-		Optional<Request> optionalRequest = requestRepository.findById(id);
-		if (optionalRequest.isPresent()) {
-			Request request = optionalRequest.get();
-			RequestDto requestDto = new RequestDto(request.getRequestId(), request.getTotalPrice(), request.getStatus(), request.getOrderTime(), request.getEndTime(), 
-									request.getCustomer().getCustomerId(), request.getCustomer().getEmployeeId(), request.getCustomer().getFirstName(), request.getCustomer().getLastName(), request.getCustomer().getBalance(), 
-									request.getCustomer().getUserId().getId(), request.getCustomer().getUserId().getUsername(), request.getCustomer().getUserId().getRole(), 
-									request.getVendor().getId(), request.getVendor().getBusinessId(), request.getVendor().getName(), 
-									request.getVendor().getUser().getId(), request.getVendor().getUser().getUsername(), request.getVendor().getUser().getRole());
-			return requestDto;
-		}
-		throw new RuntimeException("ID is invalid");
-	}
+//	/* GET REQUEST BY ID */
+//	@GetMapping("/requestDto/{id}")
+//	public RequestDto getRequestDto(@PathVariable("id") Long id) {
+//		Optional<Request> optionalRequest = requestRepository.findById(id);
+//		if (optionalRequest.isPresent()) {
+//			Request request = optionalRequest.get();
+//			RequestDto requestDto = new RequestDto(request.getRequestId(), request.getTotalPrice(), request.getStatus(), request.getOrderTime(), request.getEndTime(), 
+//									request.getCustomer().getCustomerId(), request.getCustomer().getEmployeeId(), request.getCustomer().getFirstName(), request.getCustomer().getLastName(), request.getCustomer().getBalance(), 
+//									request.getCustomer().getUserId().getId(), request.getCustomer().getUserId().getUsername(), request.getCustomer().getUserId().getRole(), 
+//									request.getVendor().getId(), request.getVendor().getBusinessId(), request.getVendor().getName(), 
+//									request.getVendor().getUser().getId(), request.getVendor().getUser().getUsername(), request.getVendor().getUser().getRole());
+//			return requestDto;
+//		}
+//		throw new RuntimeException("ID is invalid");
+//	}
 	
 	/* GET ALL REQUESTS BY CUSTOMER ID 
 	 * NEEDS DTO CONVERSION */
