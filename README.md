@@ -1,66 +1,4 @@
-# SpingQuick
-
-> Current Available Functionality
-### Jerry
-Customer/CustomerController/CustomerRepository
-- [x] postCustomer()
-- [x] getAllCustomer()
-- [x] getCustomerByID()
-- [x] deleteCustomerByID() CHECK
-- [x] updateCustomerByID() ISSUE #1
-- [x] getCustomerByEmployeeID() ISSUE #2
-- [x] getCustomerByUsername() CHECK
-- [x] getListCustomerWithFirstName() CHECK
-- [x] getListCustomerWithLastName() CHECK
-- [x] getListCustomerWithBalanceGreaterThanOrEqual() CHECK
-- [x] getListCustomerWithBalanceLessThanOrEqual() CHECK
-
-Admin/AdminController/AdminRepository
-- [x] postAdmin()  CHECK
-- [x] getAllAdmins() CHECK
-- [x] getAdmin() CHECK
-- [x] putAdmin() CHECK
-- [x] deleteAdmin() CHECK
-
-UserInfo/UserController/UserRepository
-- [x] getUser()
-- [x] postUser()
-- [x] deleteUser
-
-UserService
-- [x] loadUserByUsername()
-
-APISecurityConfig
-- [x] getPsswordEncoder()
-- [x] configure(HttpSecurity)
-- [x] configure(AuthenticationManagerBuilder)
-- [x] getCustomerProvider()
-
-Pagination
-- [ ] Pending
-
 # QuickBytesOnSpring
-### Jerry
-Customer/CustomerController/CustomerRepository
-- [x] postCustomer()
-- [x] getAllCustomer()
-- [x] getCustomerByID()
-- [x] deleteCustomerByID()
-- [x] updateCustomerByID()
-- [x] getCustomerByEmployeeID()
-- [x] getCustomerByUsername()
-- [x] getListCustomerWithFirstName()
-- [x] getListCustomerWithLastName()
-- [x] getListCustomerWithBalanceGreaterThanOrEqual()
-- [x] getListCustomerWithBalanceLessThanOrEqual()
-
-Admin/AdminController/AdminRepository
-- [ ] postAdmin()
-- [ ] getAllAdmins()
-- [ ] getAdmin()
-- [ ] putAdmin()
-- [ ] deleteAdmin()
-
 ### Kevin
 Request/RequestController/RequestRepository
 - [x] postRequest()
@@ -104,3 +42,59 @@ RequestCombo/RequestComboController/RequestComboRepository
 - [x] deleteAllRequestCombosByComboId()
 - [x] deleteAllRequestCombos()
 
+### Jerry
+Customer/CustomerController/CustomerRepository
+- [x] postCustomer()
+- [x] getAllCustomer()
+- [x] getCustomerByID()
+- [x] deleteCustomerByID() CHECK
+- [x] updateCustomerByID() ISSUE #1
+- [x] getCustomerByEmployeeID() ISSUE #2
+- [x] getCustomerByUsername() CHECK
+- [x] getListCustomerWithFirstName()
+- [x] getListCustomerWithLastName()
+- [x] getListCustomerWithBalanceGreaterThanOrEqual()
+- [x] getListCustomerWithBalanceLessThanOrEqual()
+
+Admin/AdminController/AdminRepository
+- [x] postAdmin()  CHECK
+- [x] getAllAdmins() CHECK
+- [x] getAdmin() CHECK
+- [x] putAdmin() CHECK
+- [x] deleteAdmin() CHECK
+
+UserInfo/UserController/UserRepository
+- [x] getUser()
+- [x] postUser()
+- [x] deleteUser
+
+UserService
+- [x] loadUserByUsername()
+
+APISecurityConfig
+- [x] getPsswordEncoder()
+- [x] configure(HttpSecurity)
+- [x] configure(AuthenticationManagerBuilder)
+- [x] getCustomerProvider()
+
+Pagination
+- [ ] Pending
+
+### James
+ItemCombo/ItemComboController/ItemComboRepository
+- [x] postItemCombo()
+- [x] getItemCombo()
+- [x] getAllItemCombosByRequestId()
+- [x] getAllItemComboByComboId()
+- [x] getAllItemCombos()
+- [x] putItemCombo()
+- [x] deleteItemCombo()
+- [x] deleteAllItemCombosByRequestId()
+- [x] deleteAllItemCombosByComboId()
+- [x] deleteAllItemCombos()
+
+Item/ItemController/ItemRepository
+- [x] postItem()
+- [x] getAllItems()
+- [x] getSingleItemByID()
+- [x] updateItemByID()
