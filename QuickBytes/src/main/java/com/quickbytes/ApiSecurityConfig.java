@@ -28,6 +28,15 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/user").hasAnyAuthority("admin")
 			.antMatchers("/customer").hasAnyAuthority("customer","admin")
 			.antMatchers("/admin").hasAuthority("admin")
+			.antMatchers("/vendors").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/combos").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/combo").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/combo/{cid}").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/combo/{name}").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/combos/vendorId/{vid}").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/vendor/{id}").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("/vendor/{name}").hasAnyAuthority("Vendor", "admin")
+			.antMatchers("vendor/single/{vid}").hasAnyAuthority("Vendor", "admin")
 			
 			// Use for testing
 			// .antMatchers(HttpMethod.POST, "/user").permitAll()

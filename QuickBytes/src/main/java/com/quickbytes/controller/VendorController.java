@@ -29,9 +29,6 @@ public class VendorController {
 		
 		@PostMapping("/vendor")
 		public void postVendor(@RequestBody Vendor vendor) {
-			String password = vendor.getPassword();
-			password = passwordEncoder.encode(password);
-			vendor.setPassword(password);
 			vendorRepository.save(vendor);
 		}
 		
@@ -60,8 +57,6 @@ public class VendorController {
 			if (optional.isPresent()) {
 				Vendor existingVendor=optional.get();
 				existingVendor.setName(newVendor.getName());
-				existingVendor.setUsername(newVendor.getUsername());
-				existingVendor.setPassword(newVendor.getPassword());
 				existingVendor.setBusinessId(newVendor.getBusinessId());
 				return vendorRepository.save(existingVendor);
 			}

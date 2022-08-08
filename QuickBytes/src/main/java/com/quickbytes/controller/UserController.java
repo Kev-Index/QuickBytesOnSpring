@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quickbytes.model.Admin;
 import com.quickbytes.model.Customer;
 import com.quickbytes.model.UserInfo;
+import com.quickbytes.model.Vendor;
 import com.quickbytes.repository.AdminRepository;
 import com.quickbytes.repository.CustomerRepository;
 import com.quickbytes.repository.UserRepository;
@@ -58,6 +59,11 @@ public class UserController {
 			c.setBalance((float)0);
 			c.setUserId(user);
 			customerRepository.save(c);
+		}
+		if (user.getRole().equalsIgnoreCase("Vendor")) {
+			Vendor v=new Vendor();
+			v.setName((String)user.getUsername()+ "Please Change Name");
+			v.setBusinessId((long) 0);
 		}
 	}
 	
