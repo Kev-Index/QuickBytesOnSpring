@@ -3,7 +3,6 @@ package com.quickbytes.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -59,7 +58,8 @@ import com.quickbytes.repository.RequestComboRepository;
 		return requestComboRepository.save(requestCombo);	
 	}
 	
-	/* GET REQUEST COMBO BY ID */
+	/* GET REQUEST COMBO BY ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/{id}")
 	public RequestCombo getRequestCombo(@PathVariable("id") Long id) {
 		Optional<RequestCombo> requestCombo = requestComboRepository.findById(id);
@@ -69,19 +69,22 @@ import com.quickbytes.repository.RequestComboRepository;
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET ALL REQUEST COMBOS BY REQUEST ID */
+	/* GET ALL REQUEST COMBOS BY REQUEST ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/rid/{rid}")
 	public List<RequestCombo> getAllRequestCombosByRequestId(@PathVariable("rid") Long rid) {
 		return requestComboRepository.getAllRequestCombosByRequestId(rid);
 	}
 	
-	/* GET ALL REQUEST COMBOS BY COMBO ID */
+	/* GET ALL REQUEST COMBOS BY COMBO ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombo/cid/{cid}")
 	public List<RequestCombo> getAllRequestCombosByComboId(@PathVariable("rid") Long rid) {
 		return requestComboRepository.getAllRequestCombosByComboId(rid);
 	}
 	
-	/* GET ALL REQUEST COMBOS */
+	/* GET ALL REQUEST COMBOS 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requestcombos")
 	public List<RequestCombo> getAllRequestCombos(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
 			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
