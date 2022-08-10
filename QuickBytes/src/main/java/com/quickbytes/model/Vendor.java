@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +21,24 @@ public class Vendor {
 	@Column(length=45, nullable=false)
 	private String name;
 	
+	@OneToOne
+	private UserInfo user;
 	
+	
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
+
 	public Long getVendorId() {
 		return vendorId;
+	}
+
+	public Vendor() {
+		super();
 	}
 
 	public void setVendorId(Long vendorId) {
@@ -42,6 +58,13 @@ public class Vendor {
 	}
 
 	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Vendor(Long vendorId, Long businessId, String name) {
+		super();
+		this.vendorId = vendorId;
+		this.businessId = businessId;
 		this.name = name;
 	}
 

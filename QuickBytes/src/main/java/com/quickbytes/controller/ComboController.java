@@ -43,7 +43,7 @@ import com.quickbytes.repository.ComboRepository;
 			Vendor vendor = optionalV.get();
 			
 			/* Attach category and vendor to the product */
-			combo.setVendorId(vendor.getVendorId());
+			combo.setVendor(vendor);
 			
 			/* Save the product in the DB */
 			return comboRepository.save(combo);
@@ -77,7 +77,7 @@ import com.quickbytes.repository.ComboRepository;
 				existingCombo.setName(newCombo.getName());
 				existingCombo.setAvailable(newCombo.getAvailable());
 				existingCombo.setPrice(newCombo.getPrice());
-				existingCombo.setVendorId(existingCombo.getVendorId());
+				existingCombo.setVendor(existingCombo.getVendor());
 				return comboRepository.save(existingCombo);
 			}
 			else

@@ -27,13 +27,13 @@ public class Combo {
 	@OneToOne
 	private Vendor vendor;
 
-	public Combo(Long comboId, String name, float price, Integer available, Long vendorId) {
+	public Combo(Long comboId, String name, float price, Integer available, Vendor vendor) {
 		super();
 		this.comboId = comboId;
 		this.name = name;
 		this.price = price;
 		this.available = available;
-		this.vendorId = vendorId;
+		this.vendor=vendor;
 	}
 
 	public Combo() {
@@ -73,14 +73,15 @@ public class Combo {
 		this.available = available;
 	}
 
-	public Long getVendorId() {
-		return vendorId;
+	public Vendor getVendor() {
+		return vendor;
 	}
 
-	public void setVendorId(Long vendorId) {
-		this.vendorId = vendorId;
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
 	}
-	
+
+
 	
 	
 	
