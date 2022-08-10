@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quickbytes.dto.ItemDto;
 import com.quickbytes.model.Item;
 import com.quickbytes.model.Vendor;
 import com.quickbytes.repository.ItemRepository;
@@ -28,15 +29,20 @@ public class ItemController {
 	VendorRepository vendorRepository;
 	
 	@PostMapping("/item/{vid}")
-	public void postItem(@RequestBody Item i,@PathVariable("vid") Long vid) {
+	public Item postItem(@RequestBody ItemDto itemDto) {
 		//use JpaRepository Interface
 		//has lot of precreated methods for db interaction
-		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
+		
+		Item item = new Item();
+		item.setName(itemDto.getName());
+		item.setPrice(itemDto.getPrice());
+		item.setQuantity(itemDto.getQuantity());
+		Optional<Vendor> optionalVendor = vendorRepository.findById(itemDto.getVendorId());
 		if(!optionalVendor.isPresent()) {
 			throw new RuntimeException("invalid vendor id");
 		}
-		i.setVendor(optionalVendor.get());
-		itemRepository.save(i);
+		item.setVendor(optionalVendor.get());
+		return itemRepository.save(item);
 	}
 	
 	@GetMapping("/items")
