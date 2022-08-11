@@ -3,6 +3,7 @@ package com.quickbytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,12 +26,22 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/user").hasAnyAuthority("admin")
+			.antMatchers("/user").permitAll()
+			//.antMatchers("/login").hasAnyAuthority("admin", "vendor", "customer")
 			.antMatchers("/customer").hasAnyAuthority("customer","admin")
 			.antMatchers("/admin").hasAuthority("admin")
+			.antMatchers("/vendors").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/combos").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/combo").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/combo/{cid}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/combo/{name}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/combos/vendorId/{vid}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/vendor/{id}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("/vendor/{name}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("vendor/single/{vid}").hasAnyAuthority("vendor", "admin")
 			
 			// Use for testing
-			// .antMatchers(HttpMethod.POST, "/user").permitAll()
+			.antMatchers(HttpMethod.GET, "/login").authenticated()
 			.and().httpBasic()
 			.and().csrf().disable();
 	}
@@ -38,6 +49,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(getCustomerProvider());
 	}
+	
+	
 	private DaoAuthenticationProvider getCustomerProvider() {
 		DaoAuthenticationProvider dao = new DaoAuthenticationProvider();
 		dao.setPasswordEncoder(getPasswordEncoder());
