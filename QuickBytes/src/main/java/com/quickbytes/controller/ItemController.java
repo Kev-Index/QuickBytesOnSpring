@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.dto.ItemDto;
@@ -77,7 +81,16 @@ public class ItemController {
 		}
 	}
 	@GetMapping("/item/vendor/{vid}")
-	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid) {
-		return itemRepository.findByVendorId(vid);
+	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid ,	@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
+			@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
+		if(page < 0)
+			page=0;
+		
+		Pageable pageable=PageRequest.of(page, size);
+		 
+		Page<Item> p =  itemRepository.findByVendorId(pageable,vid);
+		long total = p.getTotalElements();
+		
+		return p.getContent();
 	}
 }
