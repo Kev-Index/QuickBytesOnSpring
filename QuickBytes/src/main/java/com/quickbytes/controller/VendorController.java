@@ -1,6 +1,7 @@
 package com.quickbytes.controller;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ import com.quickbytes.model.Vendor;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class VendorController {
+
 
 		
 		@Autowired
