@@ -50,7 +50,7 @@ public class RequestController {
 		Customer customer = optionalCustomer.get();
 		
 		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
 		if (!optionalVendor.isPresent()) {
 			throw new RuntimeException("Vendor ID is invalid");
 		}
