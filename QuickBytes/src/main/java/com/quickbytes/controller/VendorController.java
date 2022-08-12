@@ -19,11 +19,8 @@ import com.quickbytes.model.Vendor;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class VendorController {
 
-
-		
 		@Autowired
 		private VendorRepository vendorRepository;
 		
