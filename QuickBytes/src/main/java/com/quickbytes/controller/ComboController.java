@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.quickbytes.model.Combo;
 	import com.quickbytes.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Combo;
 import com.quickbytes.repository.ComboRepository;
@@ -33,6 +35,7 @@ import com.quickbytes.repository.ComboRepository;
 
 		@PostMapping("/combo/{vid}")
 		public Combo postCombo(@RequestBody Combo combo, @PathVariable("vid") Long vid) {
+
 
 			/* go to repo and fetch vendor by vid */
 			Optional<Vendor> optionalV = vendorRepository.findById(vid);
