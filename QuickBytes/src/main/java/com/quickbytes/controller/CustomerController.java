@@ -67,6 +67,24 @@ public class CustomerController {
 		existingCustomer.setLastName(updatedCustomer.getLastName());
 		existingCustomer.setBalance(updatedCustomer.getBalance());
 		existingCustomer.setUserId(existingCustomer.getUserId());
+		
+		existingCustomer.setMiddleName(updatedCustomer.getMiddleName());
+		existingCustomer.setEmail(updatedCustomer.getEmail());
+		existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+		existingCustomer.setBirthday(updatedCustomer.getBirthday());
+		existingCustomer.setPreferedName(updatedCustomer.getPreferedName());
+		existingCustomer.setAddressLine1(updatedCustomer.getAddressLine1());
+		existingCustomer.setAddressLine2(updatedCustomer.getAddressLine2());
+		existingCustomer.setSuite(updatedCustomer.getSuite());
+		existingCustomer.setCountry(updatedCustomer.getCountry());
+		existingCustomer.setState(updatedCustomer.getState());
+		existingCustomer.setCity(updatedCustomer.getCity());
+		existingCustomer.setPostalCode(updatedCustomer.getPostalCode());
+		
+		existingCustomer.setTermsAccepted(updatedCustomer.isTermsAccepted());
+		existingCustomer.setEmailVerified(updatedCustomer.isEmailVerified());
+		existingCustomer.setTwoFactorAuth(updatedCustomer.isTwoFactorAuth());
+		existingCustomer.setPhoneVerified(updatedCustomer.isPhoneVerified());
 		customerRepository.save(existingCustomer);
 	}
 	
