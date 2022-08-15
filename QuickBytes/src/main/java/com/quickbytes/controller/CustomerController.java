@@ -41,6 +41,17 @@ public class CustomerController {
 			throw new RuntimeException ("Customer ID Doesn't Exist");
 		return optional.get();
 	}
+	
+	// Get Specific Customer by UserId \\
+	@GetMapping("/customer/single/user/{uid}")
+    public Customer getCustomerByUserId(@PathVariable("uid") Long uid) {
+        Optional<Customer> optional=customerRepository.getByUserId(uid);
+        if (optional.isPresent())
+            return optional.get();
+        else
+            throw new RuntimeException("ID is invalid");
+    }
+	
 	// Delete Specific Customer by CustomerID \\
 	@DeleteMapping("/customer/{cid}")
 	public void deleteCustomerById(@PathVariable("cid")Long id) {
