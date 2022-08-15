@@ -1,7 +1,6 @@
 package com.quickbytes.controller;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +14,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.model.Combo;
 import com.quickbytes.model.Vendor;
+import com.quickbytes.repository.UserRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class VendorController {
 
-
-		
 		@Autowired
 		private VendorRepository vendorRepository;
+		
 		
 		@Autowired
 		private PasswordEncoder passwordEncoder; 
@@ -49,16 +46,16 @@ public class VendorController {
 			else
 				throw new RuntimeException("ID is invalid");
 		}
-		
 		@GetMapping("/vendor/single/user/{uid}")
-        public Vendor getVendorByUserId(@PathVariable("uid") Long uid) {
-            Optional<Vendor> optional=vendorRepository.getByUserId(uid);
-            if (optional.isPresent())
-                return optional.get();
-            else
-                throw new RuntimeException("ID is invalid");
-        }
+		public Vendor getVendorByUserId(@PathVariable("uid") Long uid) {
+			Optional<Vendor> optional=vendorRepository.getByUserId(uid);
+			if (optional.isPresent())
+				return optional.get();
+			else
+				throw new RuntimeException("ID is invalid");
+		}
 		
+
 		@DeleteMapping("/vendor/{vid}")
 		public void deleteVendor(@PathVariable("vid") Long vid) {
 			vendorRepository.deleteById(vid);

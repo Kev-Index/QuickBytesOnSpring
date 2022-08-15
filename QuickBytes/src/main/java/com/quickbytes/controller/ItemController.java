@@ -56,10 +56,17 @@ public class ItemController {
 	}
 	
 	@GetMapping("/item/{id}")
-	public Item getSingleItemById(@PathVariable("id") Long id) {
+	public ItemDto getSingleItemById(@PathVariable("id") Long id) {
+		ItemDto dto = new ItemDto();
 		Optional<Item>optional =itemRepository.findById(id);
 		if(optional.isPresent()) {
-			return optional.get();
+			Item i = optional.get();
+			dto.setItemId(id);
+			dto.setName(i.getName());
+			dto.setQuantity(i.getQuantity());
+			dto.setPrice(i.getPrice());
+			dto.setVendorId(i.getVendor().getVendorId());
+			return dto;
 		}
 		else {
 			throw new RuntimeException("ID is invalid");
