@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.quickbytes.dto.UserEditDto;
 import com.quickbytes.dto.UserInfoDto;
 import com.quickbytes.model.Admin;
+import com.quickbytes.model.Combo;
 import com.quickbytes.model.Customer;
 import com.quickbytes.model.UserInfo;
 import com.quickbytes.model.Vendor;
@@ -102,13 +104,13 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/user/username")
+	/*@GetMapping("/user/username")
 	public UserEditDto getUserByUsername(Principal principal) {
 		UserInfo info = userRepository.getByUsername(principal.getName());
 		UserEditDto dto = new UserEditDto(info.getId(), info.getUsername(), 
 				info.getSecurityAnswer(), info.getSecurityQuestion());
 		return dto; 
-	}
+	}*/
 	
 	@GetMapping("/user/single/{username}")
 	public UserInfo getUser(@PathVariable("username") String username) {
@@ -117,13 +119,13 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("/user/security/info/{username}")
+	/*@GetMapping("/user/security/info/{username}")
 	public UserEditDto getUserInfo(@PathVariable("username") String username) {
 		UserInfo info =userRepository.getByUsername(username);
 		UserEditDto dto = new UserEditDto(info.getId(), info.getUsername(), 
 				"", info.getSecurityQuestion());
 		return dto; 
-	}
+	}*/
 	
 	@GetMapping("/validate-security-answer/{encodedText}")
 	public boolean verifySecurityAnswer(@PathVariable("encodedText") String encodedText) {
@@ -153,4 +155,16 @@ public class UserController {
 		userRepository.resetPassword(username,encodedPassword,LocalDate.now());
 		
 	}
+	
+	@PutMapping("/user/{uid}")
+	public void updateUser(@PathVariable("uid") Long uid, @RequestBody UserEditDto newUser) {
+		Optional<UserInfo> optional=userRepository.findById(uid);
+		if (optional.isPresent()) {
+			UserInfo existingUser=optional.get();
+			existingUser.setUsername(newUser.getUserName());
+			userRepository.updateUserInfo(newUser.getUserName());
+		}
+		else
+			throw new RuntimeException("ID is invalid");	
+		}
 }
