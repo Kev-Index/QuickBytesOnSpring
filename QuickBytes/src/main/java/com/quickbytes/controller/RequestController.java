@@ -151,6 +151,17 @@ public class RequestController {
 		return requestRepository.save(request);	
 	}
 	
+	/* ACTIVATE REQUEST */
+	@PutMapping("/request/activate/{id}")
+	public Request activateRequest(@PathVariable("id") Long id) {
+		//get request
+		Request request = getRequest(id);
+		
+		//update request
+		request.setStatus(RequestStatus.IN_PROGRESS);
+		return requestRepository.save(request);	
+	}
+	
 	/* PEND REQUEST */
 	@PutMapping("/request/send/{id}")
 	public Request pendRequest(@PathVariable("id") Long id) {
