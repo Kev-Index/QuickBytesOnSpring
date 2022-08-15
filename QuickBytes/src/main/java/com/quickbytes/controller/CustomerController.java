@@ -81,10 +81,10 @@ public class CustomerController {
 		existingCustomer.setCity(updatedCustomer.getCity());
 		existingCustomer.setPostalCode(updatedCustomer.getPostalCode());
 		
-		existingCustomer.setTermsAccepted(updatedCustomer.isTermsAccepted());
-		existingCustomer.setEmailVerified(updatedCustomer.isEmailVerified());
-		existingCustomer.setTwoFactorAuth(updatedCustomer.isTwoFactorAuth());
-		existingCustomer.setPhoneVerified(updatedCustomer.isPhoneVerified());
+		existingCustomer.setTermsAccepted(existingCustomer.isTermsAccepted());
+		existingCustomer.setEmailVerified(existingCustomer.isEmailVerified());
+		existingCustomer.setTwoFactorAuth(existingCustomer.isTwoFactorAuth());
+		existingCustomer.setPhoneVerified(existingCustomer.isPhoneVerified());
 		customerRepository.save(existingCustomer);
 	}
 	

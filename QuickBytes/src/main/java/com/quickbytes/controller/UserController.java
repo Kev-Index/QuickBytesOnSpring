@@ -18,6 +18,8 @@ import com.quickbytes.repository.AdminRepository;
 import com.quickbytes.repository.CustomerRepository;
 import com.quickbytes.repository.UserRepository;
 
+import java.util.Random;
+
 @RestController
 public class UserController {
 	@Autowired
@@ -35,6 +37,7 @@ public class UserController {
 	}
 	@PostMapping("/user")
 	public void postUser(@RequestBody UserInfo user){
+		Random rand = new Random();
 		UserInfo info = userRepository.getByUsername(user.getUsername());
 		if (info != null)
 			throw new RuntimeException("Credentials Invalid");
@@ -54,7 +57,7 @@ public class UserController {
 		if(user.getRole().equalsIgnoreCase("Customer")) {
 			Customer c = new Customer();
 			c.setFirstName((String)user.getUsername() + " Please Change Name");
-			c.setEmployeeId((int)0);
+			c.setEmployeeId(rand.nextInt(999999));
 			c.setLastName((String)user.getUsername() + " Please Change Name");
 			c.setBalance((float)0);
 			c.setUserId(user);
