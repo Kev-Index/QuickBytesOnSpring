@@ -39,7 +39,7 @@ public class UserController {
 		if (info != null)
 			throw new RuntimeException("Credentials Invalid");
 		String password = user.getPassword();
-		password = passwordEncoder.encode(password);
+		//password = passwordEncoder.encode(password);
 		user.setPassword(password);
 		user.setRole(user.getRole().toLowerCase());
 		userRepository.save(user);
@@ -54,6 +54,7 @@ public class UserController {
 		if(user.getRole().equalsIgnoreCase("Customer")) {
 			Customer c = new Customer();
 			c.setFirstName((String)user.getUsername() + " Please Change Name");
+			c.setEmployeeId((int)0);
 			c.setLastName((String)user.getUsername() + " Please Change Name");
 			c.setBalance((float)0);
 			c.setUserId(user);

@@ -3,6 +3,7 @@ package com.quickbytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,12 +26,12 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/user").hasAnyAuthority("admin")
+			/*.antMatchers("/user").hasAnyAuthority("admin")
 			.antMatchers("/customer").hasAnyAuthority("customer","admin")
-			.antMatchers("/admin").hasAuthority("admin")
+			.antMatchers("/admin").hasAuthority("admin")*/
 			
 			// Use for testing
-			// .antMatchers(HttpMethod.POST, "/user").permitAll()
+			.antMatchers(HttpMethod.POST, "/user").permitAll()
 			.and().httpBasic()
 			.and().csrf().disable();
 	}
