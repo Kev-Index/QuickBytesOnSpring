@@ -28,7 +28,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/user").permitAll()
 			//.antMatchers("/login").hasAnyAuthority("admin", "vendor", "customer")
-			.antMatchers("/customer").hasAnyAuthority("customer","admin")
+			/*.antMatchers("/customer").hasAnyAuthority("customer","admin")
 			.antMatchers("/admin").hasAuthority("admin")
 			.antMatchers("/vendors").hasAnyAuthority("vendor", "admin")
 			.antMatchers("/combos").hasAnyAuthority("vendor", "admin")
@@ -38,7 +38,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/combos/vendorId/{vid}").hasAnyAuthority("vendor", "admin")
 			.antMatchers("/vendor/{id}").hasAnyAuthority("vendor", "admin")
 			.antMatchers("/vendor/{name}").hasAnyAuthority("vendor", "admin")
-			.antMatchers("vendor/single/{vid}").hasAnyAuthority("vendor", "admin")
+			.antMatchers("vendor/single/{vid}").hasAnyAuthority("vendor", "admin")*/
 			
 			// Use for testing
 			.antMatchers(HttpMethod.GET, "/login").authenticated()

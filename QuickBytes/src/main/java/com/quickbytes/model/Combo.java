@@ -21,18 +21,14 @@ public class Combo {
 	@Column(nullable=false)
 	private float price;
 	
-	@Column(nullable=false)
-	private Integer available;
-	
 	@OneToOne
 	private Vendor vendor;
 
-	public Combo(Long comboId, String name, float price, Integer available, Vendor vendor) {
+	public Combo(Long comboId, String name, float price, Vendor vendor) {
 		super();
 		this.comboId = comboId;
 		this.name = name;
 		this.price = price;
-		this.available = available;
 		this.vendor=vendor;
 	}
 
@@ -65,13 +61,6 @@ public class Combo {
 		this.price = price;
 	}
 
-	public Integer getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(Integer available) {
-		this.available = available;
-	}
 
 	public Vendor getVendor() {
 		return vendor;
