@@ -26,11 +26,16 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-//			.antMatchers("/user").permitAll()
-//			//.antMatchers("/login").hasAnyAuthority("admin", "vendor", "customer")
+
+			.antMatchers("/user").permitAll()
+			//.antMatchers("/login").hasAnyAuthority("admin", "vendor", "customer")
 //			.antMatchers("/customer").hasAnyAuthority("customer","admin")
 //			.antMatchers("/admin").hasAuthority("admin")
-//			.antMatchers("/vendors").hasAnyAuthority("vendor", "admin")
+//			.antMatchers("/vendors").permitAll()
+//			.antMatchers("/requests").permitAll()
+//			.antMatchers("/request").permitAll()
+//			.antMatchers("/requestitem").permitAll()
+//			.antMatchers("/requestcombo").permitAll()
 //			.antMatchers("/combos").hasAnyAuthority("vendor", "admin")
 //			.antMatchers("/combo").hasAnyAuthority("vendor", "admin")
 //			.antMatchers("/combo/{cid}").hasAnyAuthority("vendor", "admin")
