@@ -33,7 +33,7 @@ public class ItemController {
 	VendorRepository vendorRepository;
 	
 	@PostMapping("/item/{vid}")
-	public Item postItem(@RequestBody ItemDto itemDto) {
+	public Item postItem(@RequestBody ItemDto itemDto, @PathVariable("vid") Long vid) {
 		//use JpaRepository Interface
 		//has lot of precreated methods for db interaction
 		
@@ -41,7 +41,7 @@ public class ItemController {
 		item.setName(itemDto.getName());
 		item.setPrice(itemDto.getPrice());
 		item.setQuantity(itemDto.getQuantity());
-		Optional<Vendor> optionalVendor = vendorRepository.findById(itemDto.getVendorId());
+		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
 		if(!optionalVendor.isPresent()) {
 			throw new RuntimeException("invalid vendor id");
 		}
@@ -87,17 +87,9 @@ public class ItemController {
 			throw new RuntimeException("ID is invalid");
 		}
 	}
+	
 	@GetMapping("/item/vendor/{vid}")
-	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid ,	@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
-			@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
-		if(page < 0)
-			page=0;
-		
-		Pageable pageable=PageRequest.of(page, size);
-		 
-		Page<Item> p =  itemRepository.findByVendorId(pageable,vid);
-		long total = p.getTotalElements();
-		
-		return p.getContent();
+	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid){
+		return itemRepository.findByVendorId(vid);
 	}
 }

@@ -4,10 +4,10 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +26,6 @@ import com.quickbytes.repository.AdminRepository;
 import com.quickbytes.repository.CustomerRepository;
 import com.quickbytes.repository.UserRepository;
 import com.quickbytes.repository.VendorRepository;
-
-import java.util.Random;
 
 @RestController
 //@CrossOrigin(origins = {"http://localhost:52265"})

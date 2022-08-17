@@ -1,6 +1,5 @@
 package com.quickbytes.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.quickbytes.model.Combo;
-import com.quickbytes.model.Item;
 
 public interface ComboRepository extends JpaRepository<Combo,Long>{
 	
