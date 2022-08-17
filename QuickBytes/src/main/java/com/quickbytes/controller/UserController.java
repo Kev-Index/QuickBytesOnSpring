@@ -110,6 +110,12 @@ public class UserController {
 		return dto; 
 	}
 	
+	@GetMapping("/user/single/{username}")
+	public UserInfo getUser(@PathVariable("username") String username) {
+		UserInfo info = userRepository.getByUsername(username);
+		return info; 
+	}
+	
 	
 	@GetMapping("/user/security/info/{username}")
 	public UserEditDto getUserInfo(@PathVariable("username") String username) {

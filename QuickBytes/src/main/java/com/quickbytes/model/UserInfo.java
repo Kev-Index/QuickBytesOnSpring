@@ -43,17 +43,23 @@ public class UserInfo {
 	}
 	@Column(nullable = true)
 	private String securityAnswer; 
+	@Column(nullable = true)
 	private LocalDate passwordLastReset; 
 	public UserInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserInfo(long id, String username, String password, String role) {
+	
+	public UserInfo(long id, String username, String password, String role, String securityQuestion,
+			String securityAnswer, LocalDate passwordLastReset) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.role = role;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+		this.passwordLastReset = passwordLastReset;
 	}
 	public long getId() {
 		return id;
