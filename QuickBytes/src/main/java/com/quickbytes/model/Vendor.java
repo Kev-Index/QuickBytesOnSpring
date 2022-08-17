@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name= "vendors")
 public class Vendor {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long vendorId;

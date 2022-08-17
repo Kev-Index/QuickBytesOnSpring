@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,16 +14,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.model.Combo;
 import com.quickbytes.model.Vendor;
+import com.quickbytes.repository.UserRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
 public class VendorController {
 
-		
 		@Autowired
 		private VendorRepository vendorRepository;
+		
 		
 		@Autowired
 		private PasswordEncoder passwordEncoder; 
@@ -45,7 +46,7 @@ public class VendorController {
 			else
 				throw new RuntimeException("ID is invalid");
 		}
-		
+
 		@GetMapping("/vendor/single/user/{uid}")
 		public Vendor getVendorByUserId(@PathVariable("uid") Long uid) {
 			Optional<Vendor> optional=vendorRepository.findByUserId(uid);

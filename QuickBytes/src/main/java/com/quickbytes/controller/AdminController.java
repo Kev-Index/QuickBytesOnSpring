@@ -38,6 +38,17 @@ public class AdminController {
 			throw new RuntimeException ("Admin ID Doesn't Exist");
 		return optional.get();
 	}
+	
+	// Get Admin by User ID \\
+	@GetMapping("/admin/single/user/{uid}")
+    public Admin getVendorByUserId(@PathVariable("uid") Long uid) {
+        Optional<Admin> optional=adminRepository.getByUserId(uid);
+        if (optional.isPresent())
+            return optional.get();
+        else
+            throw new RuntimeException("ID is invalid");
+    }
+	
 	// Put (Update) Admin By ID \\
 	@PutMapping("/admin/{aid}")
 	public void updateAdminById(@PathVariable("aid")Long id,

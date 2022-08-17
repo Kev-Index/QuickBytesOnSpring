@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.quickbytes.repository.RequestRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RequestController {
 	
 	@Autowired
@@ -48,7 +50,7 @@ public class RequestController {
 		Customer customer = optionalCustomer.get();
 		
 		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
 		if (!optionalVendor.isPresent()) {
 			throw new RuntimeException("Vendor ID is invalid");
 		}
@@ -146,6 +148,17 @@ public class RequestController {
 		
 		//update request
 		request.setTotalPrice(price);
+		return requestRepository.save(request);	
+	}
+	
+	/* ACTIVATE REQUEST */
+	@PutMapping("/request/activate/{id}")
+	public Request activateRequest(@PathVariable("id") Long id) {
+		//get request
+		Request request = getRequest(id);
+		
+		//update request
+		request.setStatus(RequestStatus.IN_PROGRESS);
 		return requestRepository.save(request);	
 	}
 	

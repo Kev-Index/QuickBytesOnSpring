@@ -4,18 +4,27 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Customer;
+import com.quickbytes.model.Item;
 import com.quickbytes.repository.CustomerRepository;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -28,8 +37,17 @@ public class CustomerController {
 	}
 	// Get All Customer in a List<Customer>  \\
 	@GetMapping("/customer")
-	public List<Customer>getAllCustomer(){
-		return customerRepository.findAll();
+	public List<Customer>getAllCustomer(@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
+			@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
+		if(page < 0)
+			page=0;
+		
+		Pageable pageable=PageRequest.of(page, size);
+		 
+		Page<Customer> p =  customerRepository.findAll(pageable);
+		long total = p.getTotalElements();
+		
+		return p.getContent();
 	}
 	// Get Specific Customer by CustomerID in Customer Obj \\
 	@GetMapping("/customer/{cid}")
@@ -39,6 +57,17 @@ public class CustomerController {
 			throw new RuntimeException ("Customer ID Doesn't Exist");
 		return optional.get();
 	}
+	
+	// Get Specific Customer by UserId \\
+	@GetMapping("/customer/single/user/{uid}")
+    public Customer getCustomerByUserId(@PathVariable("uid") Long uid) {
+        Optional<Customer> optional=customerRepository.getByUserId(uid);
+        if (optional.isPresent())
+            return optional.get();
+        else
+            throw new RuntimeException("ID is invalid");
+    }
+	
 	// Delete Specific Customer by CustomerID \\
 	@DeleteMapping("/customer/{cid}")
 	public void deleteCustomerById(@PathVariable("cid")Long id) {
@@ -65,6 +94,24 @@ public class CustomerController {
 		existingCustomer.setLastName(updatedCustomer.getLastName());
 		existingCustomer.setBalance(updatedCustomer.getBalance());
 		existingCustomer.setUserId(existingCustomer.getUserId());
+		
+		existingCustomer.setMiddleName(updatedCustomer.getMiddleName());
+		existingCustomer.setEmail(updatedCustomer.getEmail());
+		existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+		existingCustomer.setBirthday(updatedCustomer.getBirthday());
+		existingCustomer.setPreferedName(updatedCustomer.getPreferedName());
+		existingCustomer.setAddressLine1(updatedCustomer.getAddressLine1());
+		existingCustomer.setAddressLine2(updatedCustomer.getAddressLine2());
+		existingCustomer.setSuite(updatedCustomer.getSuite());
+		existingCustomer.setCountry(updatedCustomer.getCountry());
+		existingCustomer.setState(updatedCustomer.getState());
+		existingCustomer.setCity(updatedCustomer.getCity());
+		existingCustomer.setPostalCode(updatedCustomer.getPostalCode());
+		
+		existingCustomer.setTermsAccepted(existingCustomer.isTermsAccepted());
+		existingCustomer.setEmailVerified(existingCustomer.isEmailVerified());
+		existingCustomer.setTwoFactorAuth(existingCustomer.isTwoFactorAuth());
+		existingCustomer.setPhoneVerified(existingCustomer.isPhoneVerified());
 		customerRepository.save(existingCustomer);
 	}
 	

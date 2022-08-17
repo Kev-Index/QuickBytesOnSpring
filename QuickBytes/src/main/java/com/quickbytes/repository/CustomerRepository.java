@@ -1,6 +1,7 @@
 package com.quickbytes.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +21,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	List<Customer> getListCustomerWithBalanceGreaterThanOrEqual(Float balance);
 	@Query("select c from Customer c where c.balance<=?1")
 	List<Customer> getListCustomerWithBalanceLessThanOrEqual(Float balance);
+	@Query("select c from Customer c where c.userId.id=?1")
+    Optional<Customer> getByUserId(Long uid);
 
 }
