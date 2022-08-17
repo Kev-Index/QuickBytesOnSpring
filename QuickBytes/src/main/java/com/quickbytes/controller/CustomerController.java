@@ -21,7 +21,6 @@ import com.quickbytes.model.Customer;
 import com.quickbytes.repository.CustomerRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -77,7 +76,7 @@ public class CustomerController {
 		if(!optional.isPresent())
 			throw new RuntimeException ("Customer ID Doesn't Exist");
 		Customer existingCustomer = optional.get();
-		existingCustomer.setEmployeeId(updatedCustomer.getEmployeeId());
+		existingCustomer.setEmployeeId(existingCustomer.getEmployeeId());
 		existingCustomer.setFirstName(updatedCustomer.getFirstName());
 		existingCustomer.setLastName(updatedCustomer.getLastName());
 		existingCustomer.setBalance(updatedCustomer.getBalance());

@@ -28,7 +28,6 @@ import com.quickbytes.repository.UserRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
-//@CrossOrigin(origins = {"http://localhost:52265"})
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;
@@ -75,7 +74,7 @@ public class UserController {
 		}
 		if (user.getRole().equalsIgnoreCase("Vendor")) {
 			Vendor v=new Vendor();
-			v.setName((String)user.getUsername()+ "Please Change Name");
+			v.setName((String)user.getUsername());
 			v.setBusinessId((long) 0);
 			v.setUser(user);
 			vendorRepository.save(v);

@@ -24,7 +24,6 @@ import com.quickbytes.repository.VendorRepository;
 
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class ItemController {
 	@Autowired
 	ItemRepository itemRepository;
