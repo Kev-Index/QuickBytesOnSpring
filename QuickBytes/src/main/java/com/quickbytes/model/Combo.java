@@ -21,7 +21,7 @@ public class Combo {
 	@Column(nullable=false)
 	private float price;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private Integer available;
 	
 	@OneToOne

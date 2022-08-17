@@ -34,17 +34,8 @@ public class CustomerController {
 	}
 	// Get All Customer in a List<Customer>  \\
 	@GetMapping("/customer")
-	public List<Customer>getAllCustomer(@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
-			@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
-		if(page < 0)
-			page=0;
-		
-		Pageable pageable=PageRequest.of(page, size);
-		 
-		Page<Customer> p =  customerRepository.findAll(pageable);
-		long total = p.getTotalElements();
-		
-		return p.getContent();
+	public List<Customer>getAllCustomer(){
+		return customerRepository.findAll();
 	}
 	// Get Specific Customer by CustomerID in Customer Obj \\
 	@GetMapping("/customer/{cid}")
