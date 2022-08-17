@@ -24,7 +24,7 @@ import com.quickbytes.repository.RequestComboRepository;
 import com.quickbytes.repository.RequestRepository;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200"})public class RequestComboController {
+public class RequestComboController {
 	
 	@Autowired
 	RequestComboRepository requestComboRepository;

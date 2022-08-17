@@ -28,7 +28,6 @@ import com.quickbytes.repository.UserRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
-//@CrossOrigin(origins = {"http://localhost:52265"})
 public class UserController {
 	@Autowired
 	private UserRepository userRepository;

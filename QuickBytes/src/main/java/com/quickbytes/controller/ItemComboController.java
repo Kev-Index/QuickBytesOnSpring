@@ -20,7 +20,6 @@ import com.quickbytes.repository.ComboRepository;
 import com.quickbytes.repository.ItemComboRepository;
 import com.quickbytes.repository.ItemRepository;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 public class ItemComboController{
 
