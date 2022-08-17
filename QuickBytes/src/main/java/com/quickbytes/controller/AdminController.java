@@ -41,7 +41,7 @@ public class AdminController {
 	
 	// Get Admin by User ID \\
 	@GetMapping("/admin/single/user/{uid}")
-    public Admin getVendorByUserId(@PathVariable("uid") Long uid) {
+    public Admin getAdminByUserId(@PathVariable("uid") Long uid) {
         Optional<Admin> optional=adminRepository.getByUserId(uid);
         if (optional.isPresent())
             return optional.get();
@@ -57,10 +57,11 @@ public class AdminController {
 		if(!optional.isPresent())
 			throw new RuntimeException ("Admin ID Doesn't Exist");
 		Admin existingAdmin = optional.get();
-		updatedAdmin.setFirstName(existingAdmin.getFirstName());
-		updatedAdmin.setUserId(existingAdmin.getUserId());
-		updatedAdmin.setLastName(existingAdmin.getLastName());
-		adminRepository.save(updatedAdmin);
+		existingAdmin.setFirstName(updatedAdmin.getFirstName());
+		existingAdmin.setUserId(updatedAdmin.getUserId());
+		existingAdmin.setLastName(updatedAdmin.getLastName());
+		existingAdmin.setId(id);
+		adminRepository.save(existingAdmin);
 	}
 	// Delete Admin \\
 	@DeleteMapping("/admin/{aid}")
