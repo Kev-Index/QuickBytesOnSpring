@@ -4,19 +4,26 @@
 	import java.util.Optional;
 
 	import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-	import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Combo;
-	import com.quickbytes.model.Vendor;
+import com.quickbytes.model.Item;
+import com.quickbytes.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Combo;
 import com.quickbytes.repository.ComboRepository;
@@ -33,6 +40,7 @@ import com.quickbytes.repository.ComboRepository;
 
 		@PostMapping("/combo/{vid}")
 		public Combo postCombo(@RequestBody Combo combo, @PathVariable("vid") Long vid) {
+
 
 			/* go to repo and fetch vendor by vid */
 			Optional<Vendor> optionalV = vendorRepository.findById(vid);
@@ -56,11 +64,18 @@ import com.quickbytes.repository.ComboRepository;
 		}
 		
 		@GetMapping("/combos/vendorId/{vid}")
-		public List<Combo> getCombosByVendorId(@PathVariable("vid") Long vid){
-			List<Combo> list = comboRepository.getCombosByVendorId(vid);
-			return list;
+		public List<Combo> getCombosByVendorId(@PathVariable("vid") Long vid,	@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
+				@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
+			if(page < 0)
+				page=0;
+			
+			Pageable pageable=PageRequest.of(page, size);
+			 
+			Page<Combo> p =  comboRepository.findByVendorId(pageable,vid);
+			long total = p.getTotalElements();
+			
+			return p.getContent();
 		}
-		
 		@GetMapping("/combo/{name}")
 		public Long getComboIdByName(@PathVariable("name") String name) {
 			Optional<Combo> optional=comboRepository.findByname(name);

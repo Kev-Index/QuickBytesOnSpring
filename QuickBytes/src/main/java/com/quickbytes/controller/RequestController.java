@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.quickbytes.dto.RequestDto;
 import com.quickbytes.enums.RequestStatus;
 import com.quickbytes.model.Customer;
 import com.quickbytes.model.Request;
@@ -25,6 +27,7 @@ import com.quickbytes.repository.RequestRepository;
 import com.quickbytes.repository.VendorRepository;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RequestController {
 	
 	@Autowired
@@ -47,7 +50,7 @@ public class RequestController {
 		Customer customer = optionalCustomer.get();
 		
 		//get vendor
-		Optional<Vendor> optionalVendor = vendorRepository.findById(cid);
+		Optional<Vendor> optionalVendor = vendorRepository.findById(vid);
 		if (!optionalVendor.isPresent()) {
 			throw new RuntimeException("Vendor ID is invalid");
 		}
@@ -58,7 +61,8 @@ public class RequestController {
 		return requestRepository.save(request);	
 	}
 	
-	/* GET ALL REQUESTS */
+	/* GET ALL REQUESTS 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/requests")
 	public List<Request> getAllRequests(@RequestParam(name="page",required=false,defaultValue="0") Integer page, 
 			@RequestParam(name="size",required=false,defaultValue="10000") Integer size) {
@@ -69,20 +73,38 @@ public class RequestController {
 	/* GET REQUEST BY ID */
 	@GetMapping("/request/{id}")
 	public Request getRequest(@PathVariable("id") Long id) {
-		Optional<Request> request = requestRepository.findById(id);
-		if (request.isPresent()) {
-			return request.get();
+		Optional<Request> optionalRequest = requestRepository.findById(id);
+		if (optionalRequest.isPresent()) {
+			return optionalRequest.get();
 		}
 		throw new RuntimeException("ID is invalid");
 	}
 	
-	/* GET ALL REQUESTS BY CUSTOMER ID */
+//	/* GET REQUEST BY ID */
+//	@GetMapping("/requestDto/{id}")
+//	public RequestDto getRequestDto(@PathVariable("id") Long id) {
+//		Optional<Request> optionalRequest = requestRepository.findById(id);
+//		if (optionalRequest.isPresent()) {
+//			Request request = optionalRequest.get();
+//			RequestDto requestDto = new RequestDto(request.getRequestId(), request.getTotalPrice(), request.getStatus(), request.getOrderTime(), request.getEndTime(), 
+//									request.getCustomer().getCustomerId(), request.getCustomer().getEmployeeId(), request.getCustomer().getFirstName(), request.getCustomer().getLastName(), request.getCustomer().getBalance(), 
+//									request.getCustomer().getUserId().getId(), request.getCustomer().getUserId().getUsername(), request.getCustomer().getUserId().getRole(), 
+//									request.getVendor().getId(), request.getVendor().getBusinessId(), request.getVendor().getName(), 
+//									request.getVendor().getUser().getId(), request.getVendor().getUser().getUsername(), request.getVendor().getUser().getRole());
+//			return requestDto;
+//		}
+//		throw new RuntimeException("ID is invalid");
+//	}
+	
+	/* GET ALL REQUESTS BY CUSTOMER ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/request/cid/{cid}")
 	public List<Request> getAllRequestsByCustomerId(@PathVariable("cid") Long cid) {
 		return requestRepository.getAllRequestsByCustomerId(cid);
 	}
 	
-	/* GET ALL REQUESTS BY VENDOR ID */
+	/* GET ALL REQUESTS BY VENDOR ID 
+	 * NEEDS DTO CONVERSION */
 	@GetMapping("/request/vid/{vid}")
 	public List<Request> getAllRequestsByVendorId(@PathVariable("vid") Long vid) {
 		return requestRepository.getAllRequestsByVendorId(vid);
@@ -126,6 +148,17 @@ public class RequestController {
 		
 		//update request
 		request.setTotalPrice(price);
+		return requestRepository.save(request);	
+	}
+	
+	/* ACTIVATE REQUEST */
+	@PutMapping("/request/activate/{id}")
+	public Request activateRequest(@PathVariable("id") Long id) {
+		//get request
+		Request request = getRequest(id);
+		
+		//update request
+		request.setStatus(RequestStatus.IN_PROGRESS);
 		return requestRepository.save(request);	
 	}
 	

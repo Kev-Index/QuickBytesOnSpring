@@ -14,6 +14,10 @@ public interface VendorRepository extends JpaRepository<Vendor,Long> {
 	@Query("select v from Vendor v where v.user.id=?1")
 	Optional<Vendor> findByUserId(Long uid);
 	
+
+	@Query("select v from Vendor v where v.user.id=?1")
+    Optional<Vendor> getByUserId(Long uid);
+
 	/*@Query("select v from Vendor v where v.username=?1")
 	Optional<Vendor> getByUsername(String name);
   */
