@@ -90,7 +90,6 @@ import com.quickbytes.repository.ComboRepository;
 			if (optional.isPresent()) {
 				Combo existingCombo=optional.get();
 				existingCombo.setName(newCombo.getName());
-				existingCombo.setAvailable(newCombo.getAvailable());
 				existingCombo.setPrice(newCombo.getPrice());
 				existingCombo.setVendor(existingCombo.getVendor());
 				return comboRepository.save(existingCombo);

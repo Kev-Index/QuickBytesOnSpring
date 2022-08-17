@@ -28,7 +28,6 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 			.antMatchers("/user").permitAll()
-			//.antMatchers("/login").hasAnyAuthority("admin", "vendor", "customer")
 //			.antMatchers("/customer").hasAnyAuthority("customer","admin")
 //			.antMatchers("/admin").hasAuthority("admin")
 //			.antMatchers("/vendors").permitAll()
