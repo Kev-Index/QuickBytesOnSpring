@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickbytes.model.Customer;
-import com.quickbytes.model.Item;
 import com.quickbytes.repository.CustomerRepository;
 
 @RestController
@@ -83,6 +82,24 @@ public class CustomerController {
 		existingCustomer.setLastName(updatedCustomer.getLastName());
 		existingCustomer.setBalance(updatedCustomer.getBalance());
 		existingCustomer.setUserId(existingCustomer.getUserId());
+		
+		existingCustomer.setMiddleName(updatedCustomer.getMiddleName());
+		existingCustomer.setEmail(updatedCustomer.getEmail());
+		existingCustomer.setPhoneNumber(updatedCustomer.getPhoneNumber());
+		existingCustomer.setBirthday(updatedCustomer.getBirthday());
+		existingCustomer.setPreferedName(updatedCustomer.getPreferedName());
+		existingCustomer.setAddressLine1(updatedCustomer.getAddressLine1());
+		existingCustomer.setAddressLine2(updatedCustomer.getAddressLine2());
+		existingCustomer.setSuite(updatedCustomer.getSuite());
+		existingCustomer.setCountry(updatedCustomer.getCountry());
+		existingCustomer.setState(updatedCustomer.getState());
+		existingCustomer.setCity(updatedCustomer.getCity());
+		existingCustomer.setPostalCode(updatedCustomer.getPostalCode());
+		
+		existingCustomer.setTermsAccepted(existingCustomer.isTermsAccepted());
+		existingCustomer.setEmailVerified(existingCustomer.isEmailVerified());
+		existingCustomer.setTwoFactorAuth(existingCustomer.isTwoFactorAuth());
+		existingCustomer.setPhoneVerified(existingCustomer.isPhoneVerified());
 		customerRepository.save(existingCustomer);
 	}
 	

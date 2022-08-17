@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.quickbytes.dto.RequestDto;
 import com.quickbytes.enums.RequestStatus;
 import com.quickbytes.model.Customer;
 import com.quickbytes.model.Request;

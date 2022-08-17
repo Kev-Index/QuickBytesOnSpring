@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.quickbytes.model.Combo;
-import com.quickbytes.model.Item;
 
 public interface ComboRepository extends JpaRepository<Combo,Long>{
 	
