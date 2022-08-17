@@ -161,12 +161,12 @@ public class UserController {
 	}
 	
 	@PutMapping("/user/{uid}")
-	public void updateUser(@PathVariable("uid") Long uid, @RequestBody UserEditDto newUser) {
+	public void updateUser(@PathVariable("uid") Long uid, @RequestBody UserInfo newUser) {
 		Optional<UserInfo> optional=userRepository.findById(uid);
 		if (optional.isPresent()) {
 			UserInfo existingUser=optional.get();
-			existingUser.setUsername(newUser.getUserName());
-			userRepository.updateUserInfo(newUser.getUserName());
+			existingUser.setUsername(newUser.getUsername());
+			userRepository.updateUserInfo(newUser.getUsername(), uid);
 		}
 		else
 			throw new RuntimeException("ID is invalid");	

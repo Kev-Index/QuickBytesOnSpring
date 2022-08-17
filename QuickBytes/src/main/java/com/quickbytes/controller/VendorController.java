@@ -46,6 +46,7 @@ public class VendorController {
 			else
 				throw new RuntimeException("ID is invalid");
 		}
+
 		@GetMapping("/vendor/single/user/{uid}")
 		public Vendor getVendorByUserId(@PathVariable("uid") Long uid) {
 			Optional<Vendor> optional=vendorRepository.getByUserId(uid);
@@ -54,8 +55,6 @@ public class VendorController {
 			else
 				throw new RuntimeException("ID is invalid");
 		}
-		
-
 	
 		@DeleteMapping("/vendor/{vid}")
 		public void deleteVendor(@PathVariable("vid") Long vid) {
@@ -63,13 +62,13 @@ public class VendorController {
 		}
 		
 		@PutMapping("/vendor/{vid}")
-		public Vendor updateVendor(@PathVariable("vid") Long vid, @RequestBody Vendor newVendor) {
+		public void updateVendor(@PathVariable("vid") Long vid, @RequestBody Vendor newVendor) {
 			Optional<Vendor> optional=vendorRepository.findById(vid);
 			if (optional.isPresent()) {
 				Vendor existingVendor=optional.get();
 				existingVendor.setName(newVendor.getName());
 				existingVendor.setBusinessId(newVendor.getBusinessId());
-				return vendorRepository.save(existingVendor);
+				vendorRepository.updateVendor(newVendor.getName(), newVendor.getBusinessId(), vid);
 			}
 			else
 				throw new RuntimeException("ID is invalid");	
