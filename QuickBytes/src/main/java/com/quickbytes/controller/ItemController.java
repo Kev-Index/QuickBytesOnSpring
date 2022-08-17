@@ -88,16 +88,7 @@ public class ItemController {
 		}
 	}
 	@GetMapping("/item/vendor/{vid}")
-	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid ,	@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
-			@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
-		if(page < 0)
-			page=0;
-		
-		Pageable pageable=PageRequest.of(page, size);
-		 
-		Page<Item> p =  itemRepository.findByVendorId(pageable,vid);
-		long total = p.getTotalElements();
-		
-		return p.getContent();
+	public List<Item> getItemsByVendorId(@PathVariable("vid") Long vid){
+		return this.itemRepository.findByVendorId(vid);
 	}
 }

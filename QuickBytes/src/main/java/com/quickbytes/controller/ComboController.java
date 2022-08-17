@@ -64,17 +64,8 @@ import com.quickbytes.repository.ComboRepository;
 		}
 		
 		@GetMapping("/combos/vendorId/{vid}")
-		public List<Combo> getCombosByVendorId(@PathVariable("vid") Long vid,	@RequestParam(name="page", required = false, defaultValue = "0") Integer page,
-				@RequestParam(name="size",required=false,defaultValue = "100") Integer size){
-			if(page < 0)
-				page=0;
-			
-			Pageable pageable=PageRequest.of(page, size);
-			 
-			Page<Combo> p =  comboRepository.findByVendorId(pageable,vid);
-			long total = p.getTotalElements();
-			
-			return p.getContent();
+		public List<Combo> getCombosByVendorId(@PathVariable("vid") Long vid){
+			return this.comboRepository.findByVendorId(vid);
 		}
 		@GetMapping("/combo/{name}")
 		public Long getComboIdByName(@PathVariable("name") String name) {

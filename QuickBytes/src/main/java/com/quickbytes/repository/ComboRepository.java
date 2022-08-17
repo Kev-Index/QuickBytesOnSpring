@@ -17,7 +17,7 @@ public interface ComboRepository extends JpaRepository<Combo,Long>{
 	Optional<Combo> findByname(String name);
 	
 	@Query("select c from Combo c where c.vendor.vendorId=?1")
-	Page<Combo> findByVendorId(Pageable pageable, Long vid);
+	List<Combo> findByVendorId( Long vid);
 
 
   
